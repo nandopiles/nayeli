@@ -45,5 +45,29 @@ Por lo que pondremos todas las credenciales e información de la base de datos e
 Después de esto utilizaremos el ORM flask_sqlalchemy:
 pip install flask_sqlalchemy
 
+La estructura inicial del proyecto va a ser algo parecido a la siguiente:
+
+api/
+│
+├── app/
+│   ├── __init__.py
+│   ├── models.py  (si estás utilizando una base de datos)
+│   ├── routes.py  (aquí definirás las rutas de tu API)
+│   └── config.py  (configuración de la aplicación)
+│
+├── venv/  (entorno virtual para aislar las dependencias de la aplicación)
+│
+├── static/  (archivos estáticos como CSS, JavaScript, etc.)
+│
+├── templates/  (plantillas HTML)
+│
+├── requirements.txt  (lista de dependencias de Python)
+│
+└── run.py  (archivo principal para iniciar la aplicación)
+
+Ahora tendremos que crear nuestro entorno virtual y activarlo:
+python3 -m venv venv
+
+Esto nos generará nuestro entorno virtual y con ello nuestra carpeta "venv"
 
 
