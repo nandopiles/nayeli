@@ -39,3 +39,11 @@ mysql> SELECT User, Host, plugin FROM mysql.user;
 
 Vamos a utilizar el servicio en la nube:
 Clever Cloud
+
+Por lo que pondremos todas las credenciales e información de la base de datos en nuestro gestor de base de datos y accederemos a ella.
+
+Después de esto utilizaremos el ORM flask_sqlalchemy:
+pip install flask_sqlalchemy
+
+
+
