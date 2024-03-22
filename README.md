@@ -1,82 +1,46 @@
-Api hecha en Flask, supongamos que desde un equipo Ubuntu
+Api hecha en Flask  
+Guía de instalación y ejecución en un entorno Ubuntu    
+Nos aseguramos que tenemos las últimas actualizaciones  
+sudo apt-get update  
+sudo apt-get upgrade     
 
-Tenemos que tener Python3 instalado
+Tenemos que tener Python3 instalado  
+sudo apt install python3  
+python3 --version    
 
-sudo apt update
-sudo apt install python3
-python3 --version
+También el paquete de instalación de Python (pip):  
+sudo apt install python3-pip    
 
-Tendremos que tener el paquete de instalación de Python (pip) instalado:
-sudo apt install python3-pip
+Con éste instalaremos Flask:  
+sudo pip3 install Flask    
 
-Con éste instalaremos Flask:
-pip install Flask
+También tendremos que instalar MySQL server  
+sudo apt install mysql-server libmysqlclient-dev  
+sudo apt-get install mysql-server    
 
-Tendremos que instalar también MySQL server y yo he usado como gestor MySQL Workbench
-sudo apt-get update
-sudo apt-get upgrade
-sudo apt-get autoremove
-
-sudo apt-get install mysql-server
-
-Comprobamos que se ha instalado correctamente:
-sudo mysql
-
-Ahora hay que instalar el gestor MySQL Workbench
-sudo snap install mysql-workbench-community
-
-Luego en la consola, se debe ejecutar los siguientes comandos, con el propósito de cambiar el plugin de auth_socket a mysql_native_password:
-sudo mysql -u root -p
-
-mysql> use mysql
-mysql> SELECT User, Host, plugin FROM mysql.user;
-mysql> UPDATE user SET plugin='mysql_native_password' WHERE User='root';
-mysql> FLUSH PRIVILEGES;
-
-Revisamos que los cambios se hayan efectuado:
-mysql> SELECT User, Host, plugin FROM mysql.user;
-
-Vamos a utilizar el servicio en la nube:
-Clever Cloud
-
-Por lo que pondremos todas las credenciales e información de la base de datos en nuestro gestor de base de datos y accederemos a ella.
-
-Después de esto utilizaremos el ORM flask_sqlalchemy:
-pip install flask_sqlalchemy
-
-La estructura inicial del proyecto va a ser algo parecido a la siguiente:
-
-api/
-│
-├── app/
-│ ├── **init**.py
-│ ├── models.py (si estás utilizando una base de datos)
-│ ├── routes.py (aquí definirás las rutas de tu API)
-│ └── config.py (configuración de la aplicación)
-│
-├── venv/ (entorno virtual para aislar las dependencias de la aplicación)
-│
-├── static/ (archivos estáticos como CSS, JavaScript, etc.)
-│
-├── templates/ (plantillas HTML)
-│
-├── requirements.txt (lista de dependencias de Python)
-│
-└── run.py (archivo principal para iniciar la aplicación)
-
-Ahora tendremos que crear nuestro entorno virtual y activarlo:
-python3 -m venv venv
-
-Esto nos generará nuestro entorno virtual y con ello nuestra carpeta "venv"
-Tenemos que activarlo:
-source venv/bin/activate
-
-Tendremos que instalar en nuestro entorno virtual flask, flask_sqlalchemy y mysql-connector-python:
-pip install flask
-pip install flask_sqlalchemy
-pip install mysql-connector-python
+Comprobamos que se ha instalado correctamente:  
+sudo mysql    
 
 
+Vamos a utilizar el servicio en la nube: Clever Cloud    
 
-Y lo ejecutamos:
-python api/run.py
+
+Por lo que pondremos todas las credenciales e información de la base de datos en nuestro gestor de base de datos de preferencia y accederemos a ella.  
+
+Tendremos que instalar también el ORM que vamos a utilizar, que va a ser SQLAlchemy:  
+sudo pip3 install Flask-SQLAlchemy    
+
+También tendremos que instalar el conector a la base de datos:  
+pip install mysqlclient    
+
+Tendremos que agregar el directorio ~/local/bin a nuestra PATH. Para ello nos iremos a nuestro fichero de configuración de la terminal  
+En mi caso es ~/.zshrc, pero si estáis utilizando bash será ~/bashrc  
+Agregamos la siguiente línea:  
+export PATH="$HOME/.local/bin:$PATH"    
+
+Y actualizamos la configuración:  
+source ~/.zshrc    
+
+
+Una vez hecho esto nos posicionaremos dentro de nuestro proyecto y ya podremos ejecutar la api:  
+python3 run-py
