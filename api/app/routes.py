@@ -1,11 +1,10 @@
 from flask import jsonify
-from . import app  # Importa el objeto app desde el paquete app
-from . import db  # Importar db desde el mismo paquete
-from .models import User  # Importar User después de inicializar db
+from app import app
+from app.models import User
 
 
-@app.route("/users", methods=["GET"])
+# Define las rutas
+@app.route("/people")
 def get_users():
     users = User.query.all()
-    users_list = [{"username": user.username, "password": user.password} for user in users]
-    return jsonify(users_list)
+    return jsonify([user.serialize() for user in users])
