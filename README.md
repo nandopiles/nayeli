@@ -1,16 +1,5 @@
-sudo pip3 install Flask-SQLAlchemy
-
-
-sudo apt install mysql-server libmysqlclient-dev
-
-
-pip install mysqlclient
-
-
-Api hecha en Flask
-
+Api hecha en Flask  
 Guía de instalación y ejecución en un entorno Ubuntu
-
 Nos aseguramos que tenemos las últimas actualizaciones
 sudo apt-get update
 sudo apt-get upgrade
