@@ -1,5 +1,9 @@
 sudo pip3 install Flask-SQLAlchemy
+
+
 sudo apt install mysql-server libmysqlclient-dev
+
+
 pip install mysqlclient
 
 
