@@ -1,3 +1,3 @@
 class Config:
-    SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://uz0fhehaw2vdwhmo:uz0fhehaw2vdwhmo@bdwdn5gpcyklsebxusgc-mysql.services.clever-cloud.com/bdwdn5gpcyklsebxusgc"
+    SQLALCHEMY_DATABASE_URI = "mysql://uz0fhehaw2vdwhmo:Zkh4mEYmdRJLmLxDg6tx@bdwdn5gpcyklsebxusgc-mysql.services.clever-cloud.com:3306/bdwdn5gpcyklsebxusgc"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
