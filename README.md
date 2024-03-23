@@ -16,7 +16,6 @@ sudo pip3 install Flask
 
 También tendremos que instalar MySQL server  
 sudo apt install mysql-server libmysqlclient-dev  
-sudo apt-get install mysql-server    
 
 Comprobamos que se ha instalado correctamente:  
 sudo mysql    
@@ -32,6 +31,10 @@ sudo pip3 install Flask-SQLAlchemy
 
 También tendremos que instalar el conector a la base de datos:  
 pip install mysqlclient    
+En el caso de que nos diera un error, seguramente sea por la falta del paquete "pkg-config" en nuestro equipo. Para ello tendremos que ejecutar el siguiente comando:  
+sudo apt-get install pkg-config  
+
+Una vez hecho eso ya podremos instalar mysqlclient    
 
 Tendremos que agregar el directorio ~/local/bin a nuestra PATH. Para ello nos iremos a nuestro fichero de configuración de la terminal  
 En mi caso es ~/.zshrc, pero si estáis utilizando bash será ~/bashrc  
