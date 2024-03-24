@@ -13,14 +13,14 @@ def index():
 # Users
 @app.route("/users", methods=["GET"])
 def get_users():
-    """Gets all the users"""
+    """Gets all the users."""
     users = User.query.all()
     return jsonify([user.serialize() for user in users])
 
 
 @app.route("/user", methods=["GET"])
 def get_user():
-    """Gets a specific user"""
+    """Gets a specific user."""
     data = request.json
     user_id = data.get("id")
 
@@ -34,7 +34,7 @@ def get_user():
 
 @app.route("/user", methods=["POST"])
 def create_user():
-    """Inserts a new user"""
+    """Inserts a new user with the info given."""
     data = request.json
 
     new_user = User(username=data["username"], password=data["password"])
@@ -50,7 +50,7 @@ def create_user():
 
 @app.route("/user", methods=["DELETE"])
 def delete_user():
-    """Deletes an user"""
+    """Deletes an user."""
     data = request.json
     user_id = data.get("id")
 
@@ -66,6 +66,7 @@ def delete_user():
 
 @app.route("/user", methods=["PUT"])
 def update_client():
+    """Updates the info of an existing user."""
     data = request.json
     user_id = data.get("id")
 
