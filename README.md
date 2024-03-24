@@ -46,4 +46,18 @@ source ~/.zshrc
 
 
 Una vez hecho esto nos posicionaremos dentro de nuestro proyecto y ya podremos ejecutar la api:  
-python3 run-py
+python3 run-py    
+
+The folder structure has to be something like this:  
+
+```
+└── 📁nayeli  
+    └── README.md  
+    └── 📁api  
+        └── 📁app   
+            └── __init__.py   
+            └── models.py  
+            └── routes.py  
+        └── config.py  
+        └── run.py  
+```
