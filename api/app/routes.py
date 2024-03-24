@@ -1,6 +1,12 @@
-from flask import jsonify
+from flask import jsonify, send_from_directory
 from app import app
 from app.models import User
+
+
+@app.route("/")
+def index():
+    """Loads the template for the Home page"""
+    return send_from_directory("templates", "documentation.html")
 
 
 @app.route("/users", methods=["GET"])
