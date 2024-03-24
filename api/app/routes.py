@@ -16,10 +16,14 @@ def get_users():
     return jsonify([user.serialize() for user in users])
 
 
-@app.route("/user/<int:user_id>", methods=["GET"])
-def get_user(user_id):
+@app.route("/user", methods=["GET"])
+def get_user():
     """Gets a specific user from the db depending on its id"""
+    data = request.json
+    user_id = data.get("id")
+
     user = User.query.get(user_id)
+
     if user:
         return jsonify(user.serialize())
     else:
@@ -28,18 +32,29 @@ def get_user(user_id):
 
 @app.route("/user", methods=["POST"])
 def create_user():
-    # Obtener los datos del usuario del cuerpo de la solicitud (JSON)
     data = request.json
 
-    # Crear una instancia del modelo User con los datos proporcionados
     new_user = User(username=data["username"], password=data["password"])
 
-    # Agregar el nuevo usuario a la base de datos
     db.session.add(new_user)
     db.session.commit()
 
-    # Devolver una respuesta indicando éxito
     return (
         jsonify({"message": "User created", "user_id": new_user.id}),
         201,
     )
+
+
+@app.route("/user", methods=["DELETE"])
+def delete_user():
+    data = request.json
+    user_id = data.get("id")
+
+    user = User.query.get(user_id)
+
+    if user:
+        db.session.delete(user)
+        db.session.commit()
+        return jsonify({"message": "User deleted"}), 200
+    else:
+        return jsonify({"error": "User not found"}), 404
