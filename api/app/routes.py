@@ -1,5 +1,5 @@
-from flask import jsonify, send_from_directory
-from app import app
+from flask import jsonify, request, send_from_directory
+from app import app, db
 from app.models import User
 
 
@@ -24,3 +24,22 @@ def get_user(user_id):
         return jsonify(user.serialize())
     else:
         return jsonify({"error": "User not found"}), 404
+
+
+@app.route("/user", methods=["POST"])
+def create_user():
+    # Obtener los datos del usuario del cuerpo de la solicitud (JSON)
+    data = request.json
+
+    # Crear una instancia del modelo User con los datos proporcionados
+    new_user = User(username=data["username"], password=data["password"])
+
+    # Agregar el nuevo usuario a la base de datos
+    db.session.add(new_user)
+    db.session.commit()
+
+    # Devolver una respuesta indicando éxito
+    return (
+        jsonify({"message": "User created", "user_id": new_user.id}),
+        201,
+    )
