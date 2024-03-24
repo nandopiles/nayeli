@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation</title>
+</head>
+
+<body>
+    <h1>API Documentation</h1>
+    <h2>Get All Users</h2>
+    <p><strong>Description:</strong> This method returns all users available in the database.</p>
+    <p><strong>Method:</strong> GET</p>
+    <p><strong>URL:</strong> /users</p>
+    <h3>Example Response:</h3>
+    <pre>
+        <code>
+            [
+                {
+                    "id": 1,
+                    "name": "User 1",
+                    "age": 25
+                },
+                {
+                    "id": 2,
+                    "name": "User 2",
+                    "age": 30
+                }
+            ]
+        </code>
+    </pre>
+
+    <h2>Get a Specific User</h2>
+    <p><strong>Description:</strong> This method returns a specific user based on their ID.</p>
+    <p><strong>Method:</strong> GET</p>
+    <p><strong>URL:</strong> /user/{id}</p>
+    <p><strong>Parameters:</strong>
+    <ul>
+        <li><strong>id:</strong> The ID of the user to be retrieved.</li>
+    </ul>
+    </p>
+    <h3>Example Response:</h3>
+    <pre>
+        <code>
+            {
+                "id": 1,
+                "name": "User 1",
+                "age": 25
+            }
+        </code>
+    </pre>
+</body>
+
+</html>
