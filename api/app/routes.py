@@ -1,14 +1,16 @@
-from flask import jsonify, request, send_from_directory
+from flask import jsonify, make_response, request, send_from_directory
 from app import app, db
 from app.models import User
 
 
+# Home
 @app.route("/")
 def index():
     """Loads the template for the Home page"""
     return send_from_directory("templates", "documentation.html")
 
 
+# Users
 @app.route("/users", methods=["GET"])
 def get_users():
     """Gets all the users"""
@@ -60,3 +62,20 @@ def delete_user():
         return jsonify({"message": "User deleted"}), 200
     else:
         return jsonify({"error": "User not found"}), 404
+
+
+@app.route("/user", methods=["PUT"])
+def update_client():
+    data = request.json
+    user_id = data.get("id")
+
+    user = User.query.get(user_id)
+    if not user:
+        return make_response(jsonify({"error": "User not found"}), 404)
+
+    user.username = data.get("username", user.username)
+    user.password = data.get("password", user.password)
+
+    db.session.commit()
+
+    return jsonify(user.serialize())
