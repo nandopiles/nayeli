@@ -1,3 +1,12 @@
+import json
+
+
 class Config:
-    SQLALCHEMY_DATABASE_URI = "mysql://uz0fhehaw2vdwhmo:Zkh4mEYmdRJLmLxDg6tx@bdwdn5gpcyklsebxusgc-mysql.services.clever-cloud.com:3306/bdwdn5gpcyklsebxusgc"
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    @classmethod  # can be invoked in the class itself instead of in an instance of the class
+    def load_from_file(cls, filename):
+        with open(filename) as config_file:
+            config = json.load(config_file)
+        cls.SQLALCHEMY_DATABASE_URI = config.get("SQLALCHEMY_DATABASE_URI")
+        cls.SQLALCHEMY_TRACK_MODIFICATIONS = config.get(
+            "SQLALCHEMY_TRACK_MODIFICATIONS", False
+        )
