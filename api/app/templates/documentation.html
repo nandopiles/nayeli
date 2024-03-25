@@ -77,7 +77,7 @@
                     </div>
                     <h3 class="text-xl font-bold mb-2 text-gray-800">Example Response:</h3>
                     <pre
-                        class="bg-gray-200 rounded-md p-4"><code class="text-sm">$ curl -X GET https://api.example.com/users</code></pre>
+                        class="bg-gray-200 rounded-md p-4"><code class="text-sm">$ curl -X GET http://127.0.0.1:5000/users</code></pre>
                 </div>
 
                 <div class="mb-12">
@@ -92,8 +92,16 @@
                         </ul>
                     </div>
                     <h3 class="text-xl font-bold mb-2 text-gray-800">Example Response:</h3>
-                    <pre
-                        class="bg-gray-200 rounded-md p-4"><code class="text-sm">$ curl -X GET https://api.example.com/user?id=1</code></pre>
+                    <pre class="bg-gray-200 rounded-md p-4"><code class="text-sm">{
+    "id": 3
+}</code></pre>
+
+                    <h3 class="text-xl font-bold mb-2 text-gray-800 mt-3">Example Response:</h3>
+                    <pre class="bg-gray-200 rounded-md p-4"><code class="text-sm">{
+    "id": 3,
+    "username": "SpecificUser",
+    "password": "SpecificPassword"
+}</code></pre>
                 </div>
 
                 <div class="mb-12">
