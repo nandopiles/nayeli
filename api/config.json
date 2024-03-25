@@ -1,4 +1,0 @@
-{
-    "SQLALCHEMY_DATABASE_URI": "mysql://uz0fhehaw2vdwhmo:Zkh4mEYmdRJLmLxDg6tx@bdwdn5gpcyklsebxusgc-mysql.services.clever-cloud.com:3306/bdwdn5gpcyklsebxusgc",
-    "SQLALCHEMY_TRACK_MODIFICATIONS": false
-}
