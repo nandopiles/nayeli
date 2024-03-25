@@ -9,8 +9,12 @@
 
 <body>
     <h1>API Documentation</h1>
+    <p>
+        This API provides endpoints to manage users. Below are the available endpoints along with their descriptions.
+    </p>
+
     <h2>Get All Users</h2>
-    <p><strong>Description:</strong> This method returns all users available in the database.</p>
+    <p><strong>Description:</strong> Retrieves all users from the database.</p>
     <p><strong>Method:</strong> GET</p>
     <p><strong>URL:</strong> /users</p>
     <h3>Example Response:</h3>
@@ -19,25 +23,25 @@
             [
                 {
                     "id": 1,
-                    "name": "User 1",
-                    "age": 25
+                    "username": "User1",
+                    "password": "password1"
                 },
                 {
                     "id": 2,
-                    "name": "User 2",
-                    "age": 30
+                    "username": "User2",
+                    "password": "password2"
                 }
             ]
         </code>
     </pre>
 
     <h2>Get a Specific User</h2>
-    <p><strong>Description:</strong> This method returns a specific user based on their ID.</p>
+    <p><strong>Description:</strong> Retrieves a specific user by their ID.</p>
     <p><strong>Method:</strong> GET</p>
-    <p><strong>URL:</strong> /user/{id}</p>
+    <p><strong>URL:</strong> /user</p>
     <p><strong>Parameters:</strong>
     <ul>
-        <li><strong>id:</strong> The ID of the user to be retrieved.</li>
+        <li><strong>id:</strong> The ID of the user to retrieve.</li>
     </ul>
     </p>
     <h3>Example Response:</h3>
@@ -45,8 +49,80 @@
         <code>
             {
                 "id": 1,
-                "name": "User 1",
-                "age": 25
+                "username": "User1",
+                "password": "password1"
+            }
+        </code>
+    </pre>
+
+    <h2>Create a User</h2>
+    <p><strong>Description:</strong> Creates a new user with provided username and password.</p>
+    <p><strong>Method:</strong> POST</p>
+    <p><strong>URL:</strong> /user</p>
+    <p><strong>Request Body:</strong>
+    <pre>
+        <code>
+            {
+                "username": "NewUser",
+                "password": "newpassword"
+            }
+        </code>
+    </pre>
+    </p>
+    <h3>Example Response:</h3>
+    <pre>
+        <code>
+            {
+                "message": "User created",
+                "user_id": 3
+            }
+        </code>
+    </pre>
+
+    <h2>Delete a User</h2>
+    <p><strong>Description:</strong> Deletes a user by their ID.</p>
+    <p><strong>Method:</strong> DELETE</p>
+    <p><strong>URL:</strong> /user</p>
+    <p><strong>Request Body:</strong>
+    <pre>
+        <code>
+            {
+                "id": 3
+            }
+        </code>
+    </pre>
+    </p>
+    <h3>Example Response:</h3>
+    <pre>
+        <code>
+            {
+                "message": "User deleted"
+            }
+        </code>
+    </pre>
+
+    <h2>Update a User</h2>
+    <p><strong>Description:</strong> Updates the username or password of an existing user.</p>
+    <p><strong>Method:</strong> PUT</p>
+    <p><strong>URL:</strong> /user</p>
+    <p><strong>Request Body:</strong>
+    <pre>
+        <code>
+            {
+                "id": 1,
+                "username": "UpdatedUser",
+                "password": "updatedpassword"
+            }
+        </code>
+    </pre>
+    </p>
+    <h3>Example Response:</h3>
+    <pre>
+        <code>
+            {
+                "id": 1,
+                "username": "UpdatedUser",
+                "password": "updatedpassword"
             }
         </code>
     </pre>
