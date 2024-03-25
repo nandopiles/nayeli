@@ -5,127 +5,161 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>API Documentation</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
-<body>
-    <h1>API Documentation</h1>
-    <p>
-        This API provides endpoints to manage users. Below are the available endpoints along with their descriptions.
-    </p>
+<body class="bg-gray-100 font-sans antialiased flex flex-col md:flex-row">
+    <div class="flex">
+        <!-- navBar -->
+        <aside class="bg-gray-800 text-white w-64 flex-shrink-0 hidden md:block">
+            <div class="p-4 h-full overflow-y-auto">
+                <h2 class="text-lg font-semibold mb-4">Entities</h2>
+                <ul>
+                    <li class="mb-2">
+                        <!-- Detalles para la entidad -->
+                        <details class="focus:outline-none">
+                            <summary class="flex items-center p-2 hover:bg-gray-700 cursor-pointer">
+                                <!-- Ícono inicial: flecha hacia la derecha -->
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    class="icon icon-tabler icon-tabler-arrow-badge-right mr-2" width="30" height="30"
+                                    viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M13 7h-6l4 5l-4 5h6l4 -5z" />
+                                </svg>
 
-    <h2>Get All Users</h2>
-    <p><strong>Description:</strong> Retrieves all users from the database.</p>
-    <p><strong>Method:</strong> GET</p>
-    <p><strong>URL:</strong> /users</p>
-    <h3>Example Response:</h3>
-    <pre>
-        <code>
-            [
-                {
-                    "id": 1,
-                    "username": "User1",
-                    "password": "password1"
-                },
-                {
-                    "id": 2,
-                    "username": "User2",
-                    "password": "password2"
-                }
-            ]
-        </code>
-    </pre>
+                                <!-- Ícono alternativo: flecha hacia abajo -->
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    class="icon icon-tabler icon-tabler-arrow-badge-down hidden mr-2" width="30"
+                                    height="30" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M17 13v-6l-5 4l-5 -4v6l5 4z" />
+                                </svg>
 
-    <h2>Get a Specific User</h2>
-    <p><strong>Description:</strong> Retrieves a specific user by their ID.</p>
-    <p><strong>Method:</strong> GET</p>
-    <p><strong>URL:</strong> /user</p>
-    <p><strong>Parameters:</strong>
-    <ul>
-        <li><strong>id:</strong> The ID of the user to retrieve.</li>
-    </ul>
-    </p>
-    <h3>Example Response:</h3>
-    <pre>
-        <code>
-            {
-                "id": 1,
-                "username": "User1",
-                "password": "password1"
-            }
-        </code>
-    </pre>
+                                <!-- Texto -->
+                                Users
+                            </summary>
 
-    <h2>Create a User</h2>
-    <p><strong>Description:</strong> Creates a new user with provided username and password.</p>
-    <p><strong>Method:</strong> POST</p>
-    <p><strong>URL:</strong> /user</p>
-    <p><strong>Request Body:</strong>
-    <pre>
-        <code>
-            {
-                "username": "NewUser",
-                "password": "newpassword"
-            }
-        </code>
-    </pre>
-    </p>
-    <h3>Example Response:</h3>
-    <pre>
-        <code>
-            {
-                "message": "User created",
-                "user_id": 3
-            }
-        </code>
-    </pre>
 
-    <h2>Delete a User</h2>
-    <p><strong>Description:</strong> Deletes a user by their ID.</p>
-    <p><strong>Method:</strong> DELETE</p>
-    <p><strong>URL:</strong> /user</p>
-    <p><strong>Request Body:</strong>
-    <pre>
-        <code>
-            {
-                "id": 3
-            }
-        </code>
-    </pre>
-    </p>
-    <h3>Example Response:</h3>
-    <pre>
-        <code>
-            {
-                "message": "User deleted"
-            }
-        </code>
-    </pre>
+                            <!-- Lista de métodos de la entidad -->
+                            <ul class="ml-4">
+                                <li><a href="#get-all-users" class="block p-2 hover:bg-gray-700">Get All Users</a></li>
+                                <li><a href="#get-specific-user" class="block p-2 hover:bg-gray-700">Get Specific
+                                        User</a></li>
+                                <li><a href="#create-user" class="block p-2 hover:bg-gray-700">Create User</a></li>
+                                <li><a href="#update-user" class="block p-2 hover:bg-gray-700">Update User</a></li>
+                                <li><a href="#delete-user" class="block p-2 hover:bg-gray-700">Delete User</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <!-- Agregar más entidades según sea necesario -->
+                </ul>
+            </div>
+        </aside>
 
-    <h2>Update a User</h2>
-    <p><strong>Description:</strong> Updates the username or password of an existing user.</p>
-    <p><strong>Method:</strong> PUT</p>
-    <p><strong>URL:</strong> /user</p>
-    <p><strong>Request Body:</strong>
-    <pre>
-        <code>
-            {
-                "id": 1,
-                "username": "UpdatedUser",
-                "password": "updatedpassword"
-            }
-        </code>
-    </pre>
-    </p>
-    <h3>Example Response:</h3>
-    <pre>
-        <code>
-            {
-                "id": 1,
-                "username": "UpdatedUser",
-                "password": "updatedpassword"
-            }
-        </code>
-    </pre>
+
+        <div class="flex1">
+            <div class="container mx-auto px-4 py-8">
+                <h1 class="text-4xl font-bold mb-8 text-gray-800">API Documentation</h1>
+                <div class="mb-8">
+                    <p class="text-lg text-gray-700">This API provides endpoints to manage users. Below are the
+                        available
+                        endpoints along with their descriptions.</p>
+                </div>
+
+                <div class="mb-12">
+                    <h2 class="text-2xl font-bold mb-4 text-gray-800">Get All Users</h2>
+                    <div class="text-lg text-gray-700 mb-4">
+                        <p><strong>Description:</strong> Retrieves all users from the database.</p>
+                        <p><strong>Method:</strong> GET</p>
+                        <p><strong>URL:</strong> /users</p>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Example Response:</h3>
+                    <pre
+                        class="bg-gray-200 rounded-md p-4"><code class="text-sm">$ curl -X GET https://api.example.com/users</code></pre>
+                </div>
+
+                <div class="mb-12">
+                    <h2 class="text-2xl font-bold mb-4 text-gray-800">Get a Specific User</h2>
+                    <div class="text-lg text-gray-700 mb-4">
+                        <p><strong>Description:</strong> Retrieves a specific user by their ID.</p>
+                        <p><strong>Method:</strong> GET</p>
+                        <p><strong>URL:</strong> /user</p>
+                        <p><strong>Parameters:</strong></p>
+                        <ul class="list-disc pl-8">
+                            <li><strong>id:</strong> The ID of the user to retrieve.</li>
+                        </ul>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Example Response:</h3>
+                    <pre
+                        class="bg-gray-200 rounded-md p-4"><code class="text-sm">$ curl -X GET https://api.example.com/user?id=1</code></pre>
+                </div>
+
+                <div class="mb-12">
+                    <h2 class="text-2xl font-bold mb-4 text-gray-800">Create a User</h2>
+                    <div class="text-lg text-gray-700 mb-4">
+                        <p><strong>Description:</strong> Creates a new user with provided username and password.</p>
+                        <p><strong>Method:</strong> POST</p>
+                        <p><strong>URL:</strong> /user</p>
+                        <p><strong>Request Body:</strong></p>
+                        <pre class="bg-gray-200 rounded-md p-4"><code class="text-sm">{
+     "username": "NewUser",
+     "password": "newpassword"
+ }</code></pre>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Example Response:</h3>
+                    <pre class="bg-gray-200 rounded-md p-4"><code class="text-sm">{
+     "message": "User created",
+     "user_id": 3
+ }</code></pre>
+                </div>
+
+                <div class="mb-12">
+                    <h2 class="text-2xl font-bold mb-4 text-gray-800">Delete a User</h2>
+                    <div class="text-lg text-gray-700 mb-4">
+                        <p><strong>Description:</strong> Deletes a user by their ID.</p>
+                        <p><strong>Method:</strong> DELETE</p>
+                        <p><strong>URL:</strong> /user</p>
+                        <p><strong>Request Body:</strong></p>
+                        <pre class="bg-gray-200 rounded-md p-4"><code class="text-sm">{
+     "id": 3
+ }</code></pre>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Example Response:</h3>
+                    <pre class="bg-gray-200 rounded-md p-4"><code class="text-sm">{
+     "message": "User deleted"
+ }</code></pre>
+                </div>
+
+                <div class="mb-12">
+                </div>
+
+
+                <div class="mb-12">
+                    <h2 class="text-2xl font-bold mb-4 text-gray-800">Update a User</h2>
+                    <div class="text-lg text-gray-700 mb-4">
+                        <p><strong>Description:</strong> Updates the username or password of an existing user.</p>
+                        <p><strong>Method:</strong> PUT</p>
+                        <p><strong>URL:</strong> /user</p>
+                        <p><strong>Request Body:</strong></p>
+                        <pre class="bg-gray-200 rounded-md p-4"><code class="text-sm">{
+        "id": 1,
+        "username": "UpdatedUser",
+        "password": "updatedpassword"
+    }</code></pre>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Example Response:</h3>
+                    <pre class="bg-gray-200 rounded-md p-4"><code class="text-sm">{
+        "id": 1,
+        "username": "UpdatedUser",
+        "password": "updatedpassword"
+    }</code></pre>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
