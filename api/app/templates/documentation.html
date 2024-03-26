@@ -11,8 +11,9 @@
 <body class="bg-gray-100 font-sans antialiased flex flex-col md:flex-row">
     <div class="flex">
         <!-- navBar -->
-        <aside class="bg-gray-800 text-white w-64 flex-shrink-0 hidden md:block">
-            <div class="p-4 h-full overflow-y-auto">
+        <aside class="bg-gray-800 text-white w-64 flex-shrink-0 hidden md:block fixed top-0 h-full overflow-y-auto">
+            <!-- <div class="p-4 h-full overflow-y-auto"> -->
+            <div class="p-4">
                 <!-- Home -->
                 <a href="#home"
                     class="text-lg font-semibold mb-4 cursor-pointer hover:bg-gray-700 p-2 rounded-md flex items-center">
@@ -27,7 +28,7 @@
                     Home
                 </a>
                 <!-- Entities -->
-                <h2 class="text-lg font-semibold mb-4">Entities</h2>
+                <h2 class="text-lg font-semibold mb-4 underline">Entities</h2>
                 <ul>
                     <li class="mb-2">
                         <!-- Entity details -->
@@ -66,7 +67,7 @@
         </aside>
 
 
-        <div class="flex1">
+        <div class="flex1 md:ml-64">
             <div class="container mx-auto px-4 py-8">
                 <h1 id="home" class="text-4xl font-bold mb-8 text-gray-800">API Documentation</h1>
                 <div class="mb-8">
