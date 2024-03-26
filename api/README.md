@@ -68,7 +68,13 @@ Una vez hecho esto nos posicionaremos dentro de nuestro proyecto y ya podremos e
 
 ```
 python3 run-py
+```  
+
+Una vez ejecutada la api podremos acceder a su documentación en:  
 ```
+http://127.0.0.1:5000/
+```
+
 La estructura de directorios se tiene que ver algo así:
 
 ```
