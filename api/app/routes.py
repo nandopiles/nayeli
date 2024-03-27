@@ -83,8 +83,11 @@ def update_client():
     if not user:
         return make_response(jsonify({"error": "User not found"}), 404)
 
+    # Actualizamos los campos del usuario con los datos proporcionados
     user.username = data.get("username", user.username)
     user.password = data.get("password", user.password)
+    user.email = data.get("email", user.email)
+    user.address = data.get("address", user.address)
 
     db.session.commit()
 
