@@ -1,81 +1,96 @@
-Api hecha en Flask  
-Guía de instalación y ejecución en un entorno Ubuntu  
-Nos aseguramos que tenemos las últimas actualizaciones  
+## Nayeli Online Store API
+
+### This repository contains the installation guide for setting up the API needed to manage users and products for the Nayeli online store. The API, built with Flask, serves as the backend for handling user authentication, product management, and other related functionalities. Follow the instructions below to install and run the API on an Ubuntu environment.  
+
+### Installation Guide for Ubuntu Environment   
+
+#### 1. Update and Upgrade  
+Update and upgrade your system:  
 ```
 sudo apt-get update  
 sudo apt-get upgrade
 ```
 
-Tenemos que tener Python3 instalado  
+#### 2. Install Python3  
+Verify that Python3 is installed:    
 ```
 sudo apt install python3  
 python3 --version
 ```
 
-También el paquete de instalación de Python (pip):  
+#### 3. Install pip  
+Install Python package manager (pip):    
 ```
 sudo apt install python3-pip  
 ```
 
-Con éste instalaremos Flask:  
+#### 4. Install Flask  
+Install Flask using pip:    
 ```
 sudo pip3 install Flask  
 ```
 
-También tendremos que instalar MySQL server  
+#### 5. Install MySql Server  
+Install MySQL server and its development library:    
 ```
 sudo apt install mysql-server libmysqlclient-dev  
 ```
 
-Comprobamos que se ha instalado correctamente:  
+#### 6. Verify MySql Installation  
+Confirm MySQL installation:    
 ```
 sudo mysql
 ```
 
+#### 7. Cloud Service Configuration  
 Vamos a utilizar el servicio en la nube: Clever Cloud
 
-Por lo que pondremos todas las credenciales e información de la base de datos en nuestro gestor de base de datos de preferencia y accederemos a ella.
+Utilize the Clever Cloud service for cloud hosting. Store database credentials securely in your preferred database manager.  
 
-Tendremos que instalar también el ORM que vamos a utilizar, que va a ser SQLAlchemy:  
+
+#### 8. Install SQLAlchemy  
+Install SQLAlchemy ORM for database management:  
 ``` 
 sudo pip3 install Flask-SQLAlchemy
 ```
 
-También tendremos que instalar el conector a la base de datos: 
+#### 9. Install Database connector  
+Install the MySQL database connector:  
 ``` 
 pip install mysqlclient  
 ```
-En el caso de que nos diera un error, seguramente sea por la falta del paquete "pkg-config" en nuestro equipo. Para ello tendremos que ejecutar el siguiente comando:  
+
+#### 10. Resolve Dependencies  
+If encountering an error, ensure the "pkg-config" package is installed:   
 ```
 sudo apt-get install pkg-config
 ```
 
-Una vez hecho eso ya podremos instalar mysqlclient
-
-Tendremos que agregar el directorio ~/local/bin a nuestra PATH. Para ello nos iremos a nuestro fichero de configuración de la terminal  
-En mi caso es ~/.zshrc, pero si estáis utilizando bash será ~/bashrc  
-Agregamos la siguiente línea:  
+#### 11. Update Path  
+Add ~/local/bin directory to your PATH by editing your terminal configuration file (e.g., ~/.zshrc or ~/bashrc) and adding the line:    
 ```
 export PATH="$HOME/.local/bin:$PATH"
 ```
 
-Y actualizamos la configuración:  
+Then, update the configuration:    
 ```
 source ~/.zshrc
 ```
 
-Una vez hecho esto nos posicionaremos dentro de nuestro proyecto y ya podremos ejecutar la api:
+#### 12. Run the API  
+After this, navigate to your project directory and execute the API:  
 
 ```
 python3 run-py
 ```  
 
-Una vez ejecutada la api podremos acceder a su documentación en:  
+#### 13. Access API Docs  
+Once the API is running, you can access its documentation at:    
 ```
 http://127.0.0.1:5000/
 ```
 
-La estructura de directorios se tiene que ver algo así:
+Your directory structure should resemble the following:  
 
 ```
 └── 📁nayeli
