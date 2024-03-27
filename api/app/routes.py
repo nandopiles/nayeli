@@ -18,18 +18,18 @@ def get_users():
     return jsonify([user.serialize() for user in users])
 
 
-# @app.route("/user", methods=["GET"])
-# def get_user():
-#     """Gets a specific user."""
-#     data = request.json
-#     user_id = data.get("id")
+@app.route("/user", methods=["GET"])
+def get_user():
+    """Gets a specific user."""
+    data = request.json
+    user_id = data.get("id")
 
-#     user = User.query.get(user_id)
+    user = User.query.get(user_id)
 
-#     if user:
-#         return jsonify(user.serialize())
-#     else:
-#         return jsonify({"error": "User not found"}), 404
+    if user:
+        return jsonify(user.serialize())
+    else:
+        return jsonify({"error": "User not found"}), 404
 
 
 # @app.route("/user", methods=["POST"])
