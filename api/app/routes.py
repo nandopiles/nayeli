@@ -37,11 +37,10 @@ def create_user():
     """Inserts a new user with the info given."""
     data = request.json
 
-    # Comprobamos que se proporcionen los datos necesarios
+    # Checks if it has all the required camps
     if not all(key in data for key in ["username", "password", "email", "address"]):
         return jsonify({"error": "Missing data"}), 400
 
-    # Creamos un nuevo usuario con los datos proporcionados
     new_user = User(
         username=data["username"],
         password=data["password"],
@@ -49,11 +48,9 @@ def create_user():
         address=data["address"],
     )
 
-    # Añadimos el usuario a la sesión y guardamos los cambios en la base de datos
     db.session.add(new_user)
     db.session.commit()
 
-    # Devolvemos una respuesta con el ID del usuario creado
     return jsonify({"message": "User created", "user_id": new_user.id}), 201
 
 
@@ -74,7 +71,7 @@ def delete_user():
 
 
 @app.route("/user", methods=["PUT"])
-def update_client():
+def update_user():
     """Updates the info of an existing user."""
     data = request.json
     user_id = data.get("id")
@@ -83,7 +80,7 @@ def update_client():
     if not user:
         return make_response(jsonify({"error": "User not found"}), 404)
 
-    # Actualizamos los campos del usuario con los datos proporcionados
+    # Updates the user fields with the new info
     user.username = data.get("username", user.username)
     user.password = data.get("password", user.password)
     user.email = data.get("email", user.email)
