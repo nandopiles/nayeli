@@ -32,20 +32,29 @@ def get_user():
         return jsonify({"error": "User not found"}), 404
 
 
-# @app.route("/user", methods=["POST"])
-# def create_user():
-#     """Inserts a new user with the info given."""
-#     data = request.json
+@app.route("/user", methods=["POST"])
+def create_user():
+    """Inserts a new user with the info given."""
+    data = request.json
 
-#     new_user = User(username=data["username"], password=data["password"])
+    # Comprobamos que se proporcionen los datos necesarios
+    if not all(key in data for key in ["username", "password", "email", "address"]):
+        return jsonify({"error": "Missing data"}), 400
 
-#     db.session.add(new_user)
-#     db.session.commit()
+    # Creamos un nuevo usuario con los datos proporcionados
+    new_user = User(
+        username=data["username"],
+        password=data["password"],
+        email=data["email"],
+        address=data["address"],
+    )
 
-#     return (
-#         jsonify({"message": "User created", "user_id": new_user.id}),
-#         201,
-#     )
+    # Añadimos el usuario a la sesión y guardamos los cambios en la base de datos
+    db.session.add(new_user)
+    db.session.commit()
+
+    # Devolvemos una respuesta con el ID del usuario creado
+    return jsonify({"message": "User created", "user_id": new_user.id}), 201
 
 
 # @app.route("/user", methods=["DELETE"])
