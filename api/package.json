@@ -1,0 +1,15 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "Api hecha en Flask   Guía de instalación y ejecución en un entorno Ubuntu   Nos aseguramos que tenemos las últimas actualizaciones   ``` sudo apt-get update   sudo apt-get upgrade ```",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "tailwindcss": "^3.4.1"
+  }
+}
