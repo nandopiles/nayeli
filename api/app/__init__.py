@@ -19,4 +19,11 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = Config.SQLALCHEMY_TRACK_MODIFICAT
 db = SQLAlchemy(app)
 
 
-from app import routes, models
+from app import models
+
+# Crea las tablas en la base de datos
+with app.app_context():
+    db.create_all()
+
+# Importa las rutas después de haber inicializado la base de datos
+from app import routes
