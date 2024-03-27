@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>API Documentation</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
 </head>
 
 <body class="bg-gray-100 font-sans antialiased flex flex-col md:flex-row">
@@ -29,10 +34,11 @@
                 <!-- Entities -->
                 <h2 class="text-lg font-semibold mb-4 underline">Entities</h2>
                 <ul>
+                    <!-- User Entity details -->
                     <li class="mb-2">
-                        <!-- Entity details -->
                         <details class="focus:outline-none">
-                            <summary class="flex items-center p-2 hover:bg-gray-700 cursor-pointer rounded-md">
+                            <summary
+                                class="flex font-bold items-center p-2 hover:bg-gray-700 cursor-pointer rounded-md">
                                 <svg xmlns="http://www.w3.org/2000/svg"
                                     class="icon icon-tabler icon-tabler-arrow-badge-right mr-2" width="30" height="30"
                                     viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none"
@@ -40,7 +46,7 @@
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                     <path d="M13 7h-6l4 5l-4 5h6l4 -5z" />
                                 </svg>
-                                Users
+                                User
                             </summary>
 
                             <!-- Entity methods -->
@@ -59,15 +65,47 @@
                             </ul>
                         </details>
                     </li>
-                    <!-- Agregar más entidades según sea necesario -->
+
+                    <li class="mb-2">
+                        <!-- Product Entity details -->
+                        <details class="focus:outline-none">
+                            <summary
+                                class="flex font-bold items-center p-2 hover:bg-gray-700 cursor-pointer rounded-md">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    class="icon icon-tabler icon-tabler-arrow-badge-right mr-2" width="30" height="30"
+                                    viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M13 7h-6l4 5l-4 5h6l4 -5z" />
+                                </svg>
+                                Product
+                            </summary>
+
+                            <!-- Entity methods -->
+                            <ul class="ml-4">
+                                <li><a href="#get-all-products" class="block p-2 hover:bg-gray-700 rounded-md">Get All
+                                        Products</a></li>
+                                <li><a href="#get-specific-product" class="block p-2 hover:bg-gray-700 rounded-md">Get
+                                        Specific
+                                        Product</a></li>
+                                <li><a href="#create-product" class="block p-2 hover:bg-gray-700 rounded-md">Create
+                                        Product</a></li>
+                                <li><a href="#update-product" class="block p-2 hover:bg-gray-700 rounded-md">Update
+                                        Product</a></li>
+                                <li><a href="#delete-product" class="block p-2 hover:bg-gray-700 rounded-md">Delete
+                                        Product</a></li>
+                            </ul>
+                        </details>
+                    </li>
                 </ul>
             </div>
         </aside>
 
 
-        <div class="flex1 md:ml-64">
+        <!-- Home -->
+        <div id="home" class="flex1 md:ml-64">
             <div class="container mx-auto px-4 py-8">
-                <h1 id="home" class="text-4xl font-bold mb-8 text-gray-800">API Documentation</h1>
+                <h1 class="text-4xl font-bold mb-8 text-gray-800">API Documentation</h1>
                 <div class="text-lg text-gray-700 mb-24">
                     <p><strong>Purpose:</strong> This API serves as the backend for Nayeli's e-commerce platform,
                         providing endpoints to retrieve all the necessary information related to the platform's
@@ -75,7 +113,10 @@
                 </div>
 
 
-                <!-- Users: Get all -->
+                <!-- User -->
+                <h1 class="text-4xl font-bold text-gray-800 mb-8">User</h1>
+
+                <!-- User: get all -->
                 <div class="mb-12">
                     <h2 id="get-all-users" class="text-2xl font-bold mb-4 text-gray-800">Get All Users</h2>
                     <div class="text-lg text-gray-700 mb-4">
@@ -116,8 +157,7 @@
 
                 </div>
 
-
-                <!-- Users: get specific -->
+                <!-- User: get specific -->
                 <div class="mb-12">
                     <h2 id="get-specific-user" class="text-2xl font-bold mb-4 text-gray-800">Get a Specific User</h2>
                     <div class="text-lg text-gray-700 mb-4">
@@ -147,7 +187,7 @@
 
                 </div>
 
-                <!-- Users: create -->
+                <!-- User: create -->
                 <div class="mb-12">
                     <h2 id="create-user" class="text-2xl font-bold mb-4 text-gray-800">Create a User</h2>
                     <div class="text-lg text-gray-700 mb-4">
@@ -176,7 +216,7 @@
 
                 </div>
 
-                <!-- Users: delete -->
+                <!-- User: delete -->
                 <div class="mb-12">
                     <h2 id="delete-user" class="text-2xl font-bold mb-4 text-gray-800">Delete a User</h2>
                     <div class="text-lg text-gray-700 mb-4">
@@ -198,10 +238,7 @@
 }</code></pre>
                 </div>
 
-                <div class="mb-12">
-                </div>
-
-                <!-- Users: update -->
+                <!-- User: update -->
                 <div class="mb-12">
                     <h2 id="update-user" class="text-2xl font-bold mb-4 text-gray-800">Update a User</h2>
                     <div class="text-lg text-gray-700 mb-4">
@@ -229,6 +266,139 @@
 }</code></pre>
                 </div>
 
+
+                <!-- Product -->
+                <h1 class="text-4xl font-bold text-gray-800 mb-8">Product</h1>
+
+                <!-- Product: get all -->
+                <div class="mb-12">
+                    <h2 id="get-all-products" class="text-2xl font-bold mb-4 text-gray-800">Get All Products</h2>
+                    <div class="text-lg text-gray-700 mb-4">
+                        <p><strong>Description:</strong> Retrieves all products from the database.</p>
+                        <p><strong>Method:</strong> GET</p>
+                        <p><strong>URL:</strong> /products</p>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Example Response:</h3>
+                    <pre class="bg-gray-200 rounded-md p-4"><code class="text-sm">[
+    {
+        "id": 1,
+        "name": "Product1",
+        "brand": "Brand1",
+        "price": 19.99
+    },
+    {
+        "id": 2,
+        "name": "Product2",
+        "brand": "Brand2",
+        "price": 29.99
+    },
+    {
+        "id": 3,
+        "name": "Product3",
+        "brand": "Brand3",
+        "price": 39.99
+    }
+]</code></pre>
+                </div>
+
+                <!-- Product: get specific -->
+                <div class="mb-12">
+                    <h2 id="get-specific-product" class="text-2xl font-bold mb-4 text-gray-800">Get a Specific Product
+                    </h2>
+                    <div class="text-lg text-gray-700 mb-4">
+                        <p><strong>Description:</strong> Retrieves a specific product by its ID.</p>
+                        <p><strong>Method:</strong> GET</p>
+                        <p><strong>URL:</strong> /product</p>
+                        <p><strong>Parameters:</strong></p>
+                        <ul class="list-disc pl-8">
+                            <li><strong>id:</strong> The ID of the product to retrieve.</li>
+                        </ul>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Request Body:</h3>
+                    <pre class="bg-gray-200 rounded-md p-4"><code class="text-sm">{
+    "id": 3
+}</code></pre>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800 mt-3">Example Response:</h3>
+                    <pre class="bg-gray-200 rounded-md p-4"><code class="text-sm">{
+    "id": 3,
+    "name": "SpecificProduct",
+    "brand": "SpecificBrand",
+    "price": 29.99
+}</code></pre>
+                </div>
+
+                <!-- Product: create -->
+                <div class="mb-12">
+                    <h2 id="create-product" class="text-2xl font-bold mb-4 text-gray-800">Create a Product</h2>
+                    <div class="text-lg text-gray-700 mb-4">
+                        <p><strong>Description:</strong> Creates a new product with provided name, brand, price.</p>
+                        <p><strong>Method:</strong> POST</p>
+                        <p><strong>URL:</strong> /product</p>
+                        <p><strong>Parameters:</strong></p>
+                        <ul class="list-disc pl-8">
+                            <li><strong>name:</strong> The name of the product.</li>
+                            <li><strong>brand:</strong> The brand of the product.</li>
+                            <li><strong>price:</strong> The price of the product.</li>
+                        </ul>
+                        <p><strong>Request Body:</strong></p>
+                        <pre class="bg-gray-200 rounded-md p-4"><code class="text-sm">{
+    "name": "NewProduct",
+    "brand": "NewBrand",
+    "price": 29.99
+}</code></pre>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Example Response:</h3>
+                    <pre class="bg-gray-200 rounded-md p-4"><code class="text-sm">{
+    "message": "Product created",
+    "product_id": 1
+}</code></pre>
+                </div>
+
+                <!-- Product: delete -->
+                <div class="mb-12">
+                    <h2 id="delete-product" class="text-2xl font-bold mb-4 text-gray-800">Delete a Product</h2>
+                    <div class="text-lg text-gray-700 mb-4">
+                        <p><strong>Description:</strong> Deletes a product by its ID.</p>
+                        <p><strong>Method:</strong> DELETE</p>
+                        <p><strong>URL:</strong> /product</p>
+                        <p><strong>Parameters:</strong></p>
+                        <ul class="list-disc pl-8">
+                            <li><strong>id:</strong> The ID of the product to delete.</li>
+                        </ul>
+                        <p><strong>Request Body:</strong></p>
+                        <pre class="bg-gray-200 rounded-md p-4"><code class="text-sm">{
+    "id": 3
+}</code></pre>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Example Response:</h3>
+                    <pre class="bg-gray-200 rounded-md p-4"><code class="text-sm">{
+    "message": "Product deleted"
+}</code></pre>
+                </div>
+
+                <!-- Product: update -->
+                <div class="mb-12">
+                    <h2 id="update-product" class="text-2xl font-bold mb-4 text-gray-800">Update a Product</h2>
+                    <div class="text-lg text-gray-700 mb-4">
+                        <p><strong>Description:</strong> Updates the name, brand, or price of an existing product.</p>
+                        <p><strong>Method:</strong> PUT</p>
+                        <p><strong>URL:</strong> /product</p>
+                        <p><strong>Request Body:</strong></p>
+                        <pre class="bg-gray-200 rounded-md p-4"><code class="text-sm">{
+    "id": 1,
+    "name": "UpdatedProduct",
+    "brand": "UpdatedBrand",
+    "price": 39.99
+}</code></pre>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Example Response:</h3>
+                    <pre class="bg-gray-200 rounded-md p-4"><code class="text-sm">{
+    "id": 1,
+    "name": "UpdatedProduct",
+    "brand": "UpdatedBrand",
+    "price": 39.99
+}</code></pre>
+                </div>
             </div>
         </div>
     </div>

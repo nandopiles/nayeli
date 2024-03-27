@@ -1,16 +1,16 @@
 from flask import jsonify, make_response, request, send_from_directory
 from app import app, db
-from app.models import User
+from app.models import Product, User
 
 
-# Home
+# --- Home ---
 @app.route("/")
 def index():
     """Loads the template for the Home page"""
     return send_from_directory("templates", "documentation.html")
 
 
-# Users
+# --- Users ---
 @app.route("/users", methods=["GET"])
 def get_users():
     """Gets all the users."""
@@ -89,3 +89,78 @@ def update_user():
     db.session.commit()
 
     return jsonify(user.serialize())
+
+
+# --- Products ---
+@app.route("/products", methods=["GET"])
+def get_products():
+    """Gets all the products."""
+    products = Product.query.all()
+    return jsonify([product.serialize() for product in products])
+
+
+@app.route("/product", methods=["GET"])
+def get_product():
+    """Gets a specific product."""
+    data = request.json
+    product_id = data.get("id")
+
+    product = Product.query.get(product_id)
+
+    if product:
+        return jsonify(product.serialize())
+    else:
+        return jsonify({"error": "Product not found"}), 404
+
+
+@app.route("/product", methods=["POST"])
+def create_product():
+    """Inserts a new product with the info given."""
+    data = request.json
+
+    # Checks if it has all the required fields
+    if not all(key in data for key in ["name", "brand", "price"]):
+        return jsonify({"error": "Missing data"}), 400
+
+    new_product = Product(name=data["name"], brand=data["brand"], price=data["price"])
+
+    db.session.add(new_product)
+    db.session.commit()
+
+    return jsonify({"message": "Product created", "product_id": new_product.id}), 201
+
+
+@app.route("/product", methods=["PUT"])
+def update_product():
+    """Updates the info of an existing product."""
+    data = request.json
+    product_id = data.get("id")
+
+    product = Product.query.get(product_id)
+    if not product:
+        return make_response(jsonify({"error": "Product not found"}), 404)
+
+    # Updates the product fields with the new info
+    product.name = data.get("name", product.name)
+    product.brand = data.get("brand", product.brand)
+    product.price = data.get("price", product.price)
+
+    db.session.commit()
+
+    return jsonify(product.serialize())
+
+
+@app.route("/product", methods=["DELETE"])
+def delete_product():
+    """Deletes a product."""
+    data = request.json
+    product_id = data.get("id")
+
+    product = Product.query.get(product_id)
+
+    if product:
+        db.session.delete(product)
+        db.session.commit()
+        return jsonify({"message": "Product deleted"}), 200
+    else:
+        return jsonify({"error": "Product not found"}), 404
