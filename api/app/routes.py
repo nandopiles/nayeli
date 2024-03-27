@@ -57,35 +57,35 @@ def create_user():
     return jsonify({"message": "User created", "user_id": new_user.id}), 201
 
 
-# @app.route("/user", methods=["DELETE"])
-# def delete_user():
-#     """Deletes an user."""
-#     data = request.json
-#     user_id = data.get("id")
+@app.route("/user", methods=["DELETE"])
+def delete_user():
+    """Deletes an user."""
+    data = request.json
+    user_id = data.get("id")
 
-#     user = User.query.get(user_id)
+    user = User.query.get(user_id)
 
-#     if user:
-#         db.session.delete(user)
-#         db.session.commit()
-#         return jsonify({"message": "User deleted"}), 200
-#     else:
-#         return jsonify({"error": "User not found"}), 404
+    if user:
+        db.session.delete(user)
+        db.session.commit()
+        return jsonify({"message": "User deleted"}), 200
+    else:
+        return jsonify({"error": "User not found"}), 404
 
 
-# @app.route("/user", methods=["PUT"])
-# def update_client():
-#     """Updates the info of an existing user."""
-#     data = request.json
-#     user_id = data.get("id")
+@app.route("/user", methods=["PUT"])
+def update_client():
+    """Updates the info of an existing user."""
+    data = request.json
+    user_id = data.get("id")
 
-#     user = User.query.get(user_id)
-#     if not user:
-#         return make_response(jsonify({"error": "User not found"}), 404)
+    user = User.query.get(user_id)
+    if not user:
+        return make_response(jsonify({"error": "User not found"}), 404)
 
-#     user.username = data.get("username", user.username)
-#     user.password = data.get("password", user.password)
+    user.username = data.get("username", user.username)
+    user.password = data.get("password", user.password)
 
-#     db.session.commit()
+    db.session.commit()
 
-#     return jsonify(user.serialize())
+    return jsonify(user.serialize())
