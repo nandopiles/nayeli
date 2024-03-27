@@ -12,6 +12,7 @@ current_directory = Path(__file__).resolve().parent
 # Gets the absolute path of config.json using pathlib
 config_file_path = current_directory.parent / "config.json"
 
+# Loads the config of the db
 Config.load_from_file(config_file_path)
 app.config["SQLALCHEMY_DATABASE_URI"] = Config.SQLALCHEMY_DATABASE_URI
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = Config.SQLALCHEMY_TRACK_MODIFICATIONS
@@ -21,9 +22,8 @@ db = SQLAlchemy(app)
 
 from app import models
 
-# Crea las tablas en la base de datos
+# If the tables are not created it'll create them
 with app.app_context():
     db.create_all()
 
-# Importa las rutas después de haber inicializado la base de datos
 from app import routes

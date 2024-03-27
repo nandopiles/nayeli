@@ -60,7 +60,6 @@
                         </details>
                     </li>
                     <!-- Agregar más entidades según sea necesario -->
-
                 </ul>
             </div>
         </aside>
@@ -89,19 +88,32 @@
     {
         "id": 1,
         "username": "User1",
-        "password": "Password1"
+        "password": "Password1",
+        "email": "user1@example.com",
+        "address": "123 Main St",
+        "favs_list": [],
+        "bag_list": []
     },
     {
         "id": 2,
         "username": "User2",
-        "password": "Password2"
+        "password": "Password2",
+        "email": "user2@example.com",
+        "address": "456 Elm St",
+        "favs_list": [],
+        "bag_list": []
     },
     {
         "id": 3,
         "username": "User3",
-        "password": "Password3"
+        "password": "Password3",
+        "email": "user3@example.com",
+        "address": "789 Oak St",
+        "favs_list": [],
+        "bag_list": []
     }
 ]</code></pre>
+
                 </div>
 
 
@@ -126,8 +138,13 @@
                     <pre class="bg-gray-200 rounded-md p-4"><code class="text-sm">{
     "id": 3,
     "username": "SpecificUser",
-    "password": "SpecificPassword"
+    "password": "SpecificPassword",
+    "email": "specificuser@example.com",
+    "address": "123 Specific St",
+    "favs_list": [],
+    "bag_list": []
 }</code></pre>
+
                 </div>
 
                 <!-- Users: create -->
@@ -146,7 +163,9 @@
                         <p><strong>Request Body:</strong></p>
                         <pre class="bg-gray-200 rounded-md p-4"><code class="text-sm">{
      "username": "NewUser",
-     "password": "newpassword"
+     "password": "newpassword",
+     "email": "newuser@example.com",
+     "address": "123 New St"
 }</code></pre>
                     </div>
                     <h3 class="text-xl font-bold mb-2 text-gray-800">Example Response:</h3>
@@ -154,6 +173,7 @@
      "message": "User created",
      "user_id": 3
 }</code></pre>
+
                 </div>
 
                 <!-- Users: delete -->
@@ -192,14 +212,20 @@
                         <pre class="bg-gray-200 rounded-md p-4"><code class="text-sm">{
         "id": 1,
         "username": "UpdatedUser",
-        "password": "updatedpassword"
+        "password": "updatedpassword",
+        "email": "updateduser@example.com",
+        "address": "123 Updated St"
 }</code></pre>
                     </div>
                     <h3 class="text-xl font-bold mb-2 text-gray-800">Example Response:</h3>
                     <pre class="bg-gray-200 rounded-md p-4"><code class="text-sm">{
-        "id": 1,
-        "username": "UpdatedUser",
-        "password": "updatedpassword"
+    "id": 1,
+    "username": "UpdatedUser",
+    "password": "updatedpassword",
+    "email": "updateduser@example.com",
+    "address": "123 Updated St",
+    "favs_list": [],
+    "bag_list": []
 }</code></pre>
                 </div>
 
