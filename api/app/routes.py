@@ -20,7 +20,7 @@ def get_users():
 
 @app.route("/user", methods=["GET"])
 def get_user():
-    """Gets a specific user."""
+    """Gets a specific user searched by its id."""
     data = request.json
     user_id = data.get("id")
 
@@ -101,7 +101,7 @@ def get_products():
 
 @app.route("/product", methods=["GET"])
 def get_product():
-    """Gets a specific product."""
+    """Gets a specific product searched by id."""
     data = request.json
     product_id = data.get("id")
 
@@ -164,3 +164,28 @@ def delete_product():
         return jsonify({"message": "Product deleted"}), 200
     else:
         return jsonify({"error": "Product not found"}), 404
+
+
+@app.route("/products/search", methods=["POST"])
+def search_products():
+    """Searches products by name or brand."""
+    data = request.json
+
+    if "search_type" not in data or "search_term" not in data:
+        return jsonify({"error": "Search type and search term are required."}), 400
+
+    search_type = data["search_type"]
+    search_term = data["search_term"]
+
+    if search_type == "name":
+        products = Product.query.filter(Product.name.ilike(f"%{search_term}%")).all()
+        results = [product.serialize() for product in products]
+        return jsonify({"results": results})
+
+    elif search_type == "brand":
+        products = Product.query.filter(Product.brand.ilike(f"%{search_term}%")).all()
+        results = [product.serialize() for product in products]
+        return jsonify({"results": results})
+
+    else:
+        return jsonify({"error": "Invalid search type. Use 'name' or 'brand'."}), 400
