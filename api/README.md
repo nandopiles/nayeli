@@ -2,7 +2,7 @@
 
 ### This repository contains the installation guide for setting up the API needed to manage users and products for the Nayeli online store. The API, built with Flask, serves as the backend for handling user authentication, product management, and other related functionalities. Follow the instructions below to install and run the API on an Ubuntu environment.
 
-### If you have all the installation you can run the api and access to the documentation at [API Documentation](http://127.0.0.1:5000/)
+### If you have all the installation you can run the api and then access to the documentation at [API Documentation](http://127.0.0.1:5000/)
 
 ### Installation Guide for Ubuntu Environment
 
