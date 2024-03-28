@@ -168,19 +168,24 @@ def delete_product():
 
 @app.route("/products/search", methods=["POST"])
 def search_products():
-    """Searches products by name."""
+    """Searches products by name or brand."""
     data = request.json
-    search_query = data.get("query")
 
-    if not search_query:
-        return jsonify({"error": "Missing search query"}), 400
+    if "search_type" not in data or "search_term" not in data:
+        return jsonify({"error": "Search type and search term are required."}), 400
 
-    # Searches all the products that have the string in its name product.
-    products = Product.query.filter(Product.name.ilike(f"%{search_query}%")).all()
+    search_type = data["search_type"]
+    search_term = data["search_term"]
 
-    if not products:
-        return jsonify({"message": "No products found for the given search query"}), 404
+    if search_type == "name":
+        products = Product.query.filter(Product.name.ilike(f"%{search_term}%")).all()
+        results = [product.serialize() for product in products]
+        return jsonify({"results": results})
 
-    serialized_products = [product.serialize() for product in products]
+    elif search_type == "brand":
+        products = Product.query.filter(Product.brand.ilike(f"%{search_term}%")).all()
+        results = [product.serialize() for product in products]
+        return jsonify({"results": results})
 
-    return jsonify(serialized_products)
+    else:
+        return jsonify({"error": "Invalid search type. Use 'name' or 'brand'."}), 400
