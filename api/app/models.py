@@ -1,11 +1,20 @@
 from app import db
 
 
-# Intermediate table between Users and Products for the favorites list and the shopping cart
+# Intermediate table between User and Product for the favorites list and the shopping cart
 user_product = db.Table(
     "user_product",
     db.Column("user_id", db.Integer, db.ForeignKey("user.id"), primary_key=True),
     db.Column("product_id", db.Integer, db.ForeignKey("product.id"), primary_key=True),
+)
+
+# Intermediate table between Product and Category
+product_category = db.Table(
+    "product_category",
+    db.Column("product_id", db.Integer, db.ForeignKey("product.id"), primary_key=True),
+    db.Column(
+        "category_id", db.Integer, db.ForeignKey("category.id"), primary_key=True
+    ),
 )
 
 
@@ -42,6 +51,11 @@ class Product(db.Model):
     name = db.Column(db.String(100), nullable=False)
     brand = db.Column(db.String(100), nullable=False)
     price = db.Column(db.Float, nullable=False)
+    categories = db.relationship(
+        "Category",
+        secondary=product_category,
+        backref=db.backref("products", lazy="dynamic"),
+    )
 
     def serialize(self):
         return {
@@ -49,4 +63,16 @@ class Product(db.Model):
             "name": self.name,
             "brand": self.brand,
             "price": self.price,
+            "categories": [category.serialize() for category in self.categories],
+        }
+
+
+class Category(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False, unique=True)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
         }
