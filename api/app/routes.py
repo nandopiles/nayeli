@@ -20,7 +20,7 @@ def get_users():
 
 @app.route("/user", methods=["GET"])
 def get_user():
-    """Gets a specific user."""
+    """Gets a specific user searched by its id."""
     data = request.json
     user_id = data.get("id")
 
@@ -101,7 +101,7 @@ def get_products():
 
 @app.route("/product", methods=["GET"])
 def get_product():
-    """Gets a specific product."""
+    """Gets a specific product searched by id."""
     data = request.json
     product_id = data.get("id")
 
@@ -164,3 +164,23 @@ def delete_product():
         return jsonify({"message": "Product deleted"}), 200
     else:
         return jsonify({"error": "Product not found"}), 404
+
+
+@app.route("/products/search", methods=["POST"])
+def search_products():
+    """Searches products by name."""
+    data = request.json
+    search_query = data.get("query")
+
+    if not search_query:
+        return jsonify({"error": "Missing search query"}), 400
+
+    # Searches all the products that have the string in its name product.
+    products = Product.query.filter(Product.name.ilike(f"%{search_query}%")).all()
+
+    if not products:
+        return jsonify({"message": "No products found for the given search query"}), 404
+
+    serialized_products = [product.serialize() for product in products]
+
+    return jsonify(serialized_products)
