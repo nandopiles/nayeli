@@ -1,6 +1,6 @@
 # Nayeli Online Store API
 
-This repository contains the installation guide for setting up the API needed to manage users and products for the Nayeli online store. The API, built with Flask, serves as the backend for handling user authentication, product management, and other related functionalities. Follow the instructions below to install and run the API on an Ubuntu environment.  
+This repository has all you need to set up the API for managing users and products in the Nayeli online store. The API, built using Flask, handles things like user logins, product management, and more. Just follow the simple steps below to get it up and running on your Ubuntu system. And hey, we've got the SQL database hosted on Clever Cloud, adding a touch of class to our backend setup for top-notch performance and reliability.  
 
 If you have all the installation you can run the api and then access to the documentation at [API Documentation](http://127.0.0.1:5000/)
 
@@ -56,13 +56,7 @@ Confirm MySQL installation:
 sudo mysql
 ```
 
-#### 7. Cloud Service Configuration
-
-Vamos a utilizar el servicio en la nube: Clever Cloud
-
-Utilize the Clever Cloud service for cloud hosting. Store database credentials securely in your preferred database manager.
-
-#### 8. Install SQLAlchemy
+#### 7. Install SQLAlchemy
 
 Install SQLAlchemy ORM for database management:
 
@@ -70,7 +64,7 @@ Install SQLAlchemy ORM for database management:
 sudo pip3 install Flask-SQLAlchemy
 ```
 
-#### 9. Install Database connector
+#### 8. Install Database connector
 
 Install the MySQL database connector:
 
@@ -78,7 +72,7 @@ Install the MySQL database connector:
 pip install mysqlclient
 ```
 
-#### 10. Resolve Dependencies
+#### 9. Resolve Dependencies
 
 If encountering an error, ensure the "pkg-config" package is installed:
 
@@ -86,7 +80,7 @@ If encountering an error, ensure the "pkg-config" package is installed:
 sudo apt-get install pkg-config
 ```
 
-#### 11. Update Path
+#### 10. Update Path
 
 Add ~/local/bin directory to your PATH by editing your terminal configuration file (e.g., ~/.zshrc or ~/bashrc) and adding the line:
 
@@ -100,7 +94,7 @@ Then, update the configuration:
 source ~/.zshrc
 ```
 
-#### 12. Run the API
+#### 11. Run the API
 
 After this, navigate to your project directory and execute the API:
 
@@ -108,7 +102,7 @@ After this, navigate to your project directory and execute the API:
 python3 run-py
 ```
 
-#### 13. Access API Docs
+#### 12. Access API Docs
 
 Once the API is running, you can access its documentation at:
 
