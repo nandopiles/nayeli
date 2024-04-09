@@ -37,6 +37,7 @@ pyRFC3339==1.1
 pytz==2022.1
 PyYAML==5.4.1
 requests==2.25.1
+setuptools==60.9.3
 six==1.16.0
 SQLAlchemy==2.0.28
 texttable==1.6.4
