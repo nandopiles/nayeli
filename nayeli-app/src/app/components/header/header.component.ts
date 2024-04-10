@@ -8,9 +8,13 @@ import { Component } from '@angular/core';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  isMenuOpen: boolean = false;
+  isMenuOpen: boolean = true;
 
-  toggleMenu() {
+  /**
+   * Displays the mobile's menu
+   * @returns {void}
+   */
+  toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
   }
 }
