@@ -1,12 +1,12 @@
 <main class="bg-gray-800 relative overflow-hidden h-screen">
     <header class="h-24 sm:h-36 flex items-center z-30 w-full">
         <div class="container mx-auto px-6 flex items-center justify-between">
-            <div class="uppercase text-white font-black text-3xl">
-                Nayeli.
+            <div>
+                <img class="mt-12" src="/assets/text-logo.png" alt="Text logo">
             </div>
             <div class="flex items-center">
                 <nav [hidden]="isMenuOpen" id="menu"
-                    class="font-sen text-white uppercase text-lg lg:flex  items-center">
+                    class="font-sen text-[#e4e2dd] uppercase text-lg lg:flex  items-center">
                     <a href="#" class="py-1 px-6 flex">
                         Home
                     </a>
@@ -20,9 +20,9 @@
 
                 <label for="mobile-menu-toggle" class="lg:hidden flex flex-col ml-4 cursor-pointer"
                     (click)="toggleMenu()">
-                    <span class="w-6 h-1 bg-white mb-1"></span>
-                    <span class="w-6 h-1 bg-white mb-1"></span>
-                    <span class="w-6 h-1 bg-white mb-1"></span>
+                    <span class="w-6 h-1 bg-[#e4e2dd] mb-1"></span>
+                    <span class="w-6 h-1 bg-[#e4e2dd] mb-1"></span>
+                    <span class="w-6 h-1 bg-[#e4e2dd] mb-1"></span>
                 </label>
 
                 <a href="#" class="py-1 px-6 flex">
@@ -38,23 +38,23 @@
             </div>
         </div>
     </header>
-    <div class="bg-white dark:bg-gray-800 flex relative z-20 items-center overflow-hidden">
+    <div class="bg-gray-800 flex relative z-20 items-center overflow-hidden">
         <div class="container mx-auto px-6 flex relative py-16">
             <div class="sm:w-2/3 lg:w-2/5 flex flex-col relative z-20">
-                <span class="w-20 h-2 bg-gray-800 dark:bg-white mb-12"></span>
+                <span class="w-20 h-2 bg-[#e4e2dd] mb-12"></span>
                 <h1
-                    class="font-bebas-neue uppercase text-6xl sm:text-8xl font-black flex flex-col leading-none dark:text-white text-gray-800">
+                    class="font-bebas-neue uppercase text-6xl sm:text-8xl font-black flex flex-col leading-none text-[#e4e2dd]">
                     Bla
                     <span class="text-5xl sm:text-7xl"> bla bla</span>
                 </h1>
-                <p class="text-sm sm:text-base text-gray-700 dark:text-white">
+                <p class="text-sm sm:text-base text-[#e4e2dd] ">
                     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita alias quibusdam nisi debitis vero
                     voluptate tempore animi necessitatibus veniam minima ab iusto velit nesciunt, dolores amet incidunt
                     inventore minus aperiam.
                 </p>
             </div>
             <div class="hidden sm:block sm:w-1/3 lg:w-3/5 relative">
-                <img src="https://www.tailwind-kit.com/images/object/10.png" class="max-w-xs md:max-w-sm m-auto" />
+                <img src="/assets/figure.png" class="max-w-md md:max-w-lg m-auto" />
             </div>
         </div>
     </div>
