@@ -21,6 +21,7 @@ export class ProductApiServiceService {
 
   /**
    * Gets a product by its id.
+   * @param {number} productId
    * @returns {Observable<Product>}
    */
   public getProduct(productId: number): Observable<Product> {
@@ -51,5 +52,22 @@ export class ProductApiServiceService {
    */
   public updateProduct(updatedProduct: UpdatedProduct): Observable<Product> {
     return this.http.put<Product>(`${this.url}/product`, updatedProduct);
+  }
+
+  /**
+   * Deletes product by its id.
+   * @param {number} productId the product's id which is going to be deleted
+   * @returns {Observable<any>}
+   */
+  public deleteProduct(productId: number): Observable<any> {
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+      body: {
+        id: productId
+      }
+    };
+    return this.http.delete<any>(`${this.url}/product`, options);
   }
 }
