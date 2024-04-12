@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from '../interfaces/nayeli.interface';
+import { NewUser, User } from '../interfaces/nayeli.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class ApiServiceService {
   constructor(public http: HttpClient) { }
 
   /**
-   * Gets all the users
+   * Gets all the users.
    * @returns {Observable<User[]>}
    */
   public getAllUsers(): Observable<User[]> {
@@ -20,7 +20,7 @@ export class ApiServiceService {
   }
 
   /**
-   * Gets a user by its id
+   * Gets a user by its id.
    * @returns {Observable<User>}
    */
   public getUser(userId: number): Observable<User> {
@@ -36,7 +36,16 @@ export class ApiServiceService {
   }
 
   /**
-   * Deletes user by its id
+   * Adds a new user.
+   * @param {NewUser} newUser
+   * @returns {Observable<User>}
+   */
+  public addUser(newUser: NewUser): Observable<User> {
+    return this.http.post<User>(`${this.url}/user`, newUser);
+  }
+
+  /**
+   * Deletes user by its id.
    * @param {number} userId the user's id which is going to be deleted
    * @returns {Observable<any>}
    */
