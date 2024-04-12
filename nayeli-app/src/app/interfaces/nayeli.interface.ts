@@ -40,3 +40,11 @@ export interface UpdatedUser {
     email: string;
     address: string;
 }
+
+export interface UpdatedProduct {
+    id: number;
+    name: string;
+    brand: string;
+    price: number;
+}
+
