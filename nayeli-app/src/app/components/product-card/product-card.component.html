@@ -1,3 +1,4 @@
+@for (product of products; track $index) {
 <div class="my-2">
     <div class="relative group">
         <div class="overflow-hidden aspect-w-1 aspect-h-1 rounded-lg">
@@ -11,15 +12,16 @@
             <div>
                 <h3 class="text-xs font-bold text-gray-900 sm:text-sm md:text-base">
                     <a href="#url">
-                        Product Tittle
+                        {{product.name}}
                     </a>
                 </h3>
-                <p class="text-sm">Description</p>
+                <p class="text-sm">{{product.brand}}</p>
             </div>
 
             <div class="text-right">
-                <p class="text-xs font-bold text-gray-900 sm:text-sm md:text-base">89,99€</p>
+                <p class="text-xs font-bold text-gray-900 sm:text-sm md:text-base">{{product.price}}€</p>
             </div>
         </div>
     </div>
 </div>
+}
