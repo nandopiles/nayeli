@@ -7,7 +7,7 @@ import { ProductGridComponent } from './components/product-grid/product-grid.com
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, ProductCardComponent, ProductGridComponent],
+  imports: [RouterOutlet, HeaderComponent, ProductGridComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

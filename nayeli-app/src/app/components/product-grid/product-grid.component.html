@@ -7,7 +7,9 @@
         </div>
 
         <div class="grid grid-cols-2 gap-6 mt-10 lg:mt-16 lg:gap-4 lg:grid-cols-4">
-            <app-product-card></app-product-card>
+            @for (product of products; track $index) {
+            <app-product-card [product]="product"></app-product-card>
+            }
         </div>
     </div>
 </section>
