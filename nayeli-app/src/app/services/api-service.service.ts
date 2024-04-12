@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { NewUser, User } from '../interfaces/nayeli.interface';
+import { NewUser, UpdatedUser, User } from '../interfaces/nayeli.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +42,15 @@ export class ApiServiceService {
    */
   public addUser(newUser: NewUser): Observable<User> {
     return this.http.post<User>(`${this.url}/user`, newUser);
+  }
+
+  /**
+   * Updates an existing user.
+   * @param {UpdatedUser} updatedUser
+   * @returns {Observable<User>}
+   */
+  public updateUser(updatedUser: UpdatedUser): Observable<User> {
+    return this.http.put<User>(`${this.url}/user`, updatedUser);
   }
 
   /**

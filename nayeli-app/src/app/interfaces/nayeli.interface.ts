@@ -26,3 +26,11 @@ export interface NewUser {
     email: string;
     address: string;
 }
+
+export interface UpdatedUser {
+    id: number;
+    username: string;
+    password: string;
+    email: string;
+    address: string;
+}
