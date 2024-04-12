@@ -20,7 +20,23 @@ export class ApiServiceService {
   }
 
   /**
-   * Deletes a specific user by its id
+   * Gets a user by its id
+   * @returns {Observable<User>}
+   */
+  public getUser(userId: number): Observable<User> {
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+      body: {
+        id: userId
+      }
+    };
+    return this.http.get<User>(`${this.url}/user`, options)
+  }
+
+  /**
+   * Deletes user by its id
    * @param {number} userId the user's id which is going to be deleted
    * @returns {Observable<any>}
    */
