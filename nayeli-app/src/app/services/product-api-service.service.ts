@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { NewProduct, Product, UpdatedProduct } from '../interfaces/nayeli.interface';
+import { NewProduct, Product, ProductSearch, UpdatedProduct } from '../interfaces/nayeli.interface';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -17,6 +17,15 @@ export class ProductApiServiceService {
    */
   public getAllProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.url}/products`)
+  }
+
+  /**
+   * Performs a product search.
+   * @param {ProductSearch} searchRequest
+   * @returns {Observable<Product[]>}
+   */
+  public searchProducts(searchRequest: ProductSearch): Observable<Product[]> {
+    return this.http.post<Product[]>(`${this.url}/products/search`, searchRequest);
   }
 
   /**

@@ -48,3 +48,7 @@ export interface UpdatedProduct {
     price: number;
 }
 
+export interface ProductSearch {
+    search_type: string;
+    search_term: string;
+}
