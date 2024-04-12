@@ -21,6 +21,7 @@ export class UserApiService {
 
   /**
    * Gets a user by its id.
+   * @param {number} userId
    * @returns {Observable<User>}
    */
   public getUser(userId: number): Observable<User> {
