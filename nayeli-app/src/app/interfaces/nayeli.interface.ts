@@ -27,6 +27,12 @@ export interface NewUser {
     address: string;
 }
 
+export interface NewProduct {
+    name: string;
+    brand: string;
+    price: number;
+}
+
 export interface UpdatedUser {
     id: number;
     username: string;

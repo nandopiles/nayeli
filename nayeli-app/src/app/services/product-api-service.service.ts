@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Product } from '../interfaces/nayeli.interface';
+import { NewProduct, Product } from '../interfaces/nayeli.interface';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -21,7 +21,7 @@ export class ProductApiServiceService {
 
   /**
    * Gets a product by its id.
-   * @returns {Observable<User>}
+   * @returns {Observable<Product>}
    */
   public getProduct(productId: number): Observable<Product> {
     const options = {
@@ -34,4 +34,15 @@ export class ProductApiServiceService {
     };
     return this.http.get<Product>(`${this.url}/product`, options)
   }
+
+  /**
+   * Adds a new user.
+   * @param {NewProduct} newProduct
+   * @returns {Observable<Product>}
+   */
+  public addProduct(newProduct: NewProduct): Observable<Product> {
+    return this.http.post<Product>(`${this.url}/product`, newProduct);
+  }
+
+  
 }
