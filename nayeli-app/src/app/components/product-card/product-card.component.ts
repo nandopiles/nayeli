@@ -1,6 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Product } from '../../interfaces/nayeli.interface';
-import { ProductApiService } from '../../services/product-api-service.service';
 
 @Component({
   selector: 'app-product-card',
