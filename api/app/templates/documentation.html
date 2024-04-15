@@ -287,19 +287,22 @@
         "id": 1,
         "name": "Product1",
         "brand": "Brand1",
-        "price": 19.99
+        "price": 19.99,
+        "img": "1.png"
     },
     {
         "id": 2,
         "name": "Product2",
         "brand": "Brand2",
-        "price": 29.99
+        "price": 29.99,
+        "img": "2.png"
     },
     {
         "id": 3,
         "name": "Product3",
         "brand": "Brand3",
-        "price": 39.99
+        "price": 39.99,
+        "img": "3.png"
     }
 ]</code></pre>
                 </div>
@@ -326,7 +329,35 @@
     "id": 3,
     "name": "SpecificProduct",
     "brand": "SpecificBrand",
+    "price": 29.99,
+    "img": "3.png"
+}</code></pre>
+                </div>
+
+                <!-- Product: create -->
+                <div class="mb-12">
+                    <h2 id="create-product" class="text-2xl font-bold mb-4 text-gray-800">Create a Product</h2>
+                    <div class="text-lg text-gray-700 mb-4">
+                        <p><strong>Description:</strong> Creates a new product with provided name, brand, price.</p>
+                        <p><strong>Method:</strong> POST</p>
+                        <p><strong>URL:</strong> /product</p>
+                        <p><strong>Parameters:</strong></p>
+                        <ul class="list-disc pl-8">
+                            <li><strong>name:</strong> The name of the product.</li>
+                            <li><strong>brand:</strong> The brand of the product.</li>
+                            <li><strong>price:</strong> The price of the product.</li>
+                        </ul>
+                        <p><strong>Request Body:</strong></p>
+                        <pre class="bg-gray-200 rounded-md p-4"><code class="text-sm">{
+    "name": "NewProduct",
+    "brand": "NewBrand",
     "price": 29.99
+}</code></pre>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Example Response:</h3>
+                    <pre class="bg-gray-200 rounded-md p-4"><code class="text-sm">{
+    "message": "Product created",
+    "product_id": 1
 }</code></pre>
                 </div>
 
@@ -357,34 +388,8 @@
     "id": 1,
     "name": "UpdatedProduct",
     "brand": "UpdatedBrand",
-    "price": 39.99
-}</code></pre>
-                </div>
-
-                <!-- Product: create -->
-                <div class="mb-12">
-                    <h2 id="create-product" class="text-2xl font-bold mb-4 text-gray-800">Create a Product</h2>
-                    <div class="text-lg text-gray-700 mb-4">
-                        <p><strong>Description:</strong> Creates a new product with provided name, brand, price.</p>
-                        <p><strong>Method:</strong> POST</p>
-                        <p><strong>URL:</strong> /product</p>
-                        <p><strong>Parameters:</strong></p>
-                        <ul class="list-disc pl-8">
-                            <li><strong>name:</strong> The name of the product.</li>
-                            <li><strong>brand:</strong> The brand of the product.</li>
-                            <li><strong>price:</strong> The price of the product.</li>
-                        </ul>
-                        <p><strong>Request Body:</strong></p>
-                        <pre class="bg-gray-200 rounded-md p-4"><code class="text-sm">{
-    "name": "NewProduct",
-    "brand": "NewBrand",
-    "price": 29.99
-}</code></pre>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2 text-gray-800">Example Response:</h3>
-                    <pre class="bg-gray-200 rounded-md p-4"><code class="text-sm">{
-    "message": "Product created",
-    "product_id": 1
+    "price": 39.99,
+    "img": null
 }</code></pre>
                 </div>
 
@@ -434,13 +439,15 @@
             "id": 1,
             "name": "Product1",
             "brand": "Brand1",
-            "price": 99.99
+            "price": 99.99,
+            "img": "1.png"
         },
         {
             "id": 2,
             "name": "Product2",
             "brand": "Brand2",
-            "price": 79.99
+            "price": 79.99,
+            "img": "2.png"
         }
     ]
 }</code></pre>
