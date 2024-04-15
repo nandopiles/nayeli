@@ -51,6 +51,7 @@ class Product(db.Model):
     name = db.Column(db.String(100), nullable=False)
     brand = db.Column(db.String(100), nullable=False)
     price = db.Column(db.Float, nullable=False)
+    img = db.Column(db.String(200), nullable=True)
     categories = db.relationship(
         "Category",
         secondary=product_category,
@@ -63,6 +64,7 @@ class Product(db.Model):
             "name": self.name,
             "brand": self.brand,
             "price": self.price,
+            "img": self.img,
             "categories": [category.serialize() for category in self.categories],
         }
 
