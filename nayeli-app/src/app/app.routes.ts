@@ -1,7 +1,9 @@
 import { Routes } from '@angular/router';
-import { ProductGridComponent } from './components/product-grid/product-grid.component';
+import { HomeComponent } from './views/home/home.component';
+import { ProductsComponent } from './views/products/products.component';
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'products', pathMatch: 'full' },
-    { path: 'products', component: ProductGridComponent }
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
+    { path: 'home', component: HomeComponent },
+    { path: 'products', component: ProductsComponent }
 ];
