@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { Product } from '../../interfaces/nayeli.interface';
 import { ProductApiService } from '../../services/product-api-service.service';
 import { SpinnerComponent } from '../../components/spinner/spinner.component';
-import { ProductGridComponent } from '../../components/product-grid/product-grid.component';
+import { ProductCardComponent } from '../../components/product-card/product-card.component';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [ProductGridComponent, SpinnerComponent],
+  imports: [ProductCardComponent, SpinnerComponent],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })
