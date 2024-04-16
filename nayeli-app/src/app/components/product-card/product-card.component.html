@@ -1,7 +1,7 @@
 <div class="my-2">
     <div class="relative group">
         <div class="overflow-hidden aspect-w-1 aspect-h-1 rounded-lg h-60">
-            <a href="/product">
+            <a routerLink="/product">
                 <img class="object-cover w-full h-full transition-all duration-300 group-hover:scale-110"
                     [src]="'/assets/img/'+ product.img" [alt]="'Image of the product:' + product.name" />
             </a>
@@ -11,7 +11,7 @@
                 <h3 class="font-bold text-gray-900 xs:text-sm md:text-base">
                     {{product.brand}}
                 </h3>
-                <a href="#url">
+                <a routerLink="#url">
                     <p class="text-sm">{{product.name}}</p>
                 </a>
             </div>
