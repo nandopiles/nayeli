@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NewProduct, Product, ProductSearch, UpdatedProduct } from '../interfaces/nayeli.interface';
 import { Observable } from 'rxjs';
@@ -34,15 +34,9 @@ export class ProductApiService {
    * @returns {Observable<Product>}
    */
   public getProduct(productId: number): Observable<Product> {
-    const options = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      }),
-      body: {
-        id: productId
-      }
-    };
-    return this.http.get<Product>(`${this.url}/product`, options)
+    const params = new HttpParams().set('id', productId.toString());
+
+    return this.http.get<Product>(`${this.url}/product`, { params });
   }
 
   /**

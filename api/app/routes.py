@@ -102,8 +102,7 @@ def get_products():
 @app.route("/product", methods=["GET"])
 def get_product():
     """Gets a specific product searched by id."""
-    data = request.json
-    product_id = data.get("id")
+    product_id = request.args.get("id")
 
     product = Product.query.get(product_id)
 

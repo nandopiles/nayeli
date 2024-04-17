@@ -1,3 +1,6 @@
+@if (isLoading) {
+<app-spinner></app-spinner>
+} @else {
 <div class="bg-white">
     <div class="pt-6">
 
@@ -5,8 +8,7 @@
         <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
             <div
                 class="aspect-h-4 aspect-w-3 hidden overflow-hidden lg:border-r lg:border-gray-200 rounded-lg lg:block">
-                <img src="https://tailwindui.com/img/ecommerce-images/product-page-02-secondary-product-shot.jpg"
-                    alt="Two each of gray, white, and black shirts laying flat."
+                <img [src]="'assets/img/'+product.img" [alt]="'Stock photo of the product '+product.name"
                     class="h-full w-full object-cover object-center">
             </div>
 
@@ -14,12 +16,12 @@
             <div class="mt-4 lg:row-span-3 lg:mt-5">
                 <h2 class="sr-only">Product information</h2>
                 <article class="mb-3">
-                    <p class="text-2xl font-extrabold">Brand</p>
-                    <p class="text-lg font-mono">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptates non aliquid porro error sit culpa voluptatem nemo sapiente saepe alias minus, placeat et! Molestiae corrupti eos, quidem fuga eaque est!</p>
+                    <p class="text-2xl font-extrabold">{{product.brand}}</p>
+                    <p class="text-lg font-mono">{{product.name}}</p>
                 </article>
             </div>
             <form class="mt-2 p-5 lg:border-l-2 border-gray-300">
-                <p class="text-3xl tracking-tight text-gray-900">192€</p>
+                <p class="text-3xl tracking-tight text-gray-900">{{product.price}}€</p>
                 <!-- Sizes -->
                 <div class="mt-4">
                     <fieldset class="mt-4">
@@ -28,8 +30,7 @@
                             <!-- XXS -->
                             <label
                                 class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-not-allowed bg-gray-50 text-gray-200">
-                                <input type="radio" value="XXS" class="sr-only"
-                                    aria-labelledby="size-choice-0-label">
+                                <input type="radio" value="XXS" class="sr-only" aria-labelledby="size-choice-0-label">
                                 <span id="size-choice-0-label">XXS</span>
                             </label>
 
@@ -86,3 +87,4 @@
         </div>
     </div>
 </div>
+}
