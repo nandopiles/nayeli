@@ -34,7 +34,87 @@
                 </div>
             </div>
 
-            <!-- Sizes -->
+            @if (isFootwear()) {
+            <!-- Footwear Sizes -->
+            <form class="mt-2 p-5 lg:border-l-2 border-gray-300">
+                <p class="text-3xl tracking-tight text-gray-900">{{product.price}}€</p>
+                <div class="mt-4">
+                    <fieldset class="mt-4">
+                        <legend class="sr-only">Choose a size</legend>
+                        <div class="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4">
+                            <!-- 38 -->
+                            <label
+                                class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-not-allowed bg-gray-50 text-gray-200">
+                                <input type="radio" value="38" class="sr-only" aria-labelledby="size-choice-0-label">
+                                <span id="size-choice-0-label">38</span>
+                            </label>
+
+                            <!-- 39 -->
+                            <label
+                                class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm active:ring-2 ring-orange-500">
+                                <input type="radio" [formControl]="size" value="39" class="sr-only"
+                                    aria-labelledby="size-choice-1-label">
+                                <span id="size-choice-1-label">39</span>
+                            </label>
+
+                            <!-- 40 -->
+                            <label
+                                class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm active:ring-2 ring-orange-500">
+                                <input type="radio" [formControl]="size" value="40" class="sr-only"
+                                    aria-labelledby="size-choice-2-label">
+                                <span id="size-choice-2-label">40</span>
+                            </label>
+
+                            <!-- 41 -->
+                            <label
+                                class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-not-allowed bg-gray-50 text-gray-200">
+                                <input type="radio" [formControl]="size" value="41" class="sr-only"
+                                    aria-labelledby="size-choice-3-label">
+                                <span id="size-choice-3-label">41</span>
+                            </label>
+
+                            <!-- 42 -->
+                            <label
+                                class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm active:ring-2 ring-orange-500">
+                                <input type="radio" [formControl]="size" value="42" class="sr-only"
+                                    aria-labelledby="size-choice-4-label">
+                                <span id="size-choice-4-label">42</span>
+                            </label>
+
+                            <!-- 43 -->
+                            <label
+                                class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm active:ring-2 ring-orange-500">
+                                <input type="radio" [formControl]="size" value="43" class="sr-only"
+                                    aria-labelledby="size-choice-5-label">
+                                <span id="size-choice-5-label">43</span>
+                            </label>
+
+                            <!-- 44 -->
+                            <label
+                                class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-not-allowed bg-gray-50 text-gray-200">
+                                <input type="radio" [formControl]="size" value="44" class="sr-only"
+                                    aria-labelledby="size-choice-5-label">
+                                <span id="size-choice-5-label">44</span>
+                            </label>
+
+                            <!-- 45 -->
+                            <label
+                                class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm active:ring-2 ring-orange-500">
+                                <input type="radio" [formControl]="size" value="45" class="sr-only"
+                                    aria-labelledby="size-choice-5-label">
+                                <span id="size-choice-5-label">45</span>
+                            </label>
+                        </div>
+                    </fieldset>
+                </div>
+                <p class="mt-4 text-nowrap">Size selected: <b>{{size.value}}</b></p>
+
+                <button type="submit"
+                    class="mt-10 lg:w-full text-white bg-gradient-to-br from-orange-300 to-orange-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-orange-200 dark:focus:ring-orange-800 font-medium rounded-lg text-md px-5 py-2.5 text-center">Add
+                    to bag</button>
+            </form>
+            } @else if (isClothing()) {
+            <!-- Clothing Sizes -->
             <form class="mt-2 p-5 lg:border-l-2 border-gray-300">
                 <p class="text-3xl tracking-tight text-gray-900">{{product.price}}€</p>
                 <div class="mt-4">
@@ -66,7 +146,7 @@
 
                             <!-- M -->
                             <label
-                                class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm active:ring-2 ring-orange-500">
+                                class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-not-allowed bg-gray-50 text-gray-200">
                                 <input type="radio" [formControl]="size" value="M" class="sr-only"
                                     aria-labelledby="size-choice-3-label">
                                 <span id="size-choice-3-label">M</span>
@@ -88,16 +168,40 @@
                                 <span id="size-choice-5-label">XL</span>
                             </label>
                         </div>
-
                     </fieldset>
                 </div>
-
                 <p class="mt-4 text-nowrap">Size selected: <b>{{size.value}}</b></p>
 
                 <button type="submit"
                     class="mt-10 lg:w-full text-white bg-gradient-to-br from-orange-300 to-orange-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-orange-200 dark:focus:ring-orange-800 font-medium rounded-lg text-md px-5 py-2.5 text-center">Add
                     to bag</button>
             </form>
+            } @else if (isAccessories()){
+            <!-- Accessories Sizes -->
+            <form class="mt-2 p-5 lg:border-l-2 border-gray-300">
+                <p class="text-3xl tracking-tight text-gray-900">{{product.price}}€</p>
+                <div class="mt-4">
+                    <fieldset class="mt-4">
+                        <legend class="sr-only">Choose a size</legend>
+                        <div class="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4">
+                            <!-- Unique Size -->
+                            <label
+                                class="group relative flex items-center justify-center rounded-md border px-20 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm active:ring-2 ring-orange-500">
+                                <input type="radio" [formControl]="size" value="Unique Size" class="sr-only"
+                                    aria-labelledby="size-choice-1-label">
+                                <span id="size-choice-1-label" style="white-space: nowrap;">Unique Size</span>
+                            </label>
+
+                        </div>
+                    </fieldset>
+                </div>
+                <p class="mt-4 text-nowrap">Size selected: <b>{{size.value}}</b></p>
+
+                <button type="submit"
+                    class="mt-10 lg:w-full text-white bg-gradient-to-br from-orange-300 to-orange-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-orange-200 dark:focus:ring-orange-800 font-medium rounded-lg text-md px-5 py-2.5 text-center">Add
+                    to bag</button>
+            </form>
+            }
         </div>
     </div>
 </div>

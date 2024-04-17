@@ -22,12 +22,36 @@ export class ProductDetailComponent implements OnInit {
     price: 0
   };
   isLoading: boolean = true;
-  size = new FormControl('XS');
+  size = new FormControl('None');
 
   constructor(
     private route: ActivatedRoute,
     private service: ProductApiService
   ) { }
+
+  /**
+   * Checks if the category of the product is 'Footwear'
+   * @returns {boolean}
+   */
+  isFootwear(): boolean {
+    return this.product.categories.some(cat => cat.id === 1 && cat.name === 'Footwear');
+  }
+
+  /**
+   * Checks if the category of the product is 'Clothing'
+   * @returns {boolean}
+   */
+  isClothing(): boolean {
+    return this.product.categories.some(cat => cat.id === 2 && cat.name === 'Clothing');
+  }
+
+  /**
+   * Checks if the category of the product is 'Accessories'
+   * @returns {boolean}
+   */
+  isAccessories(): boolean {
+    return this.product.categories.some(cat => cat.id === 3 && cat.name === 'Accessories');
+  }
 
   /**
    * Loads the info of the product selected.
