@@ -1,22 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import { ProductCardComponent } from '../product-card/product-card.component';
+import { Component } from '@angular/core';
 import { Product } from '../../interfaces/nayeli.interface';
 import { ProductApiService } from '../../services/product-api-service.service';
-import { SpinnerComponent } from '../spinner/spinner.component';
+import { SpinnerComponent } from '../../components/spinner/spinner.component';
+import { ProductCardComponent } from '../../components/product-card/product-card.component';
 
 @Component({
-  selector: 'app-product-grid',
+  selector: 'app-products',
   standalone: true,
   imports: [ProductCardComponent, SpinnerComponent],
-  templateUrl: './product-grid.component.html',
-  styleUrl: './product-grid.component.css'
+  templateUrl: './products.component.html',
+  styleUrl: './products.component.css'
 })
-export class ProductGridComponent implements OnInit {
+export class ProductsComponent {
   public products: Product[] = [];
   public isLoaded: boolean = false;
 
   public constructor(public service: ProductApiService) { }
 
+  /**
+   * Gets all the products.
+   * @returns {void}
+   */
   public getProducts(): void {
     this.service.getAllProducts().subscribe((response) => {
       this.products = response
@@ -25,6 +29,10 @@ export class ProductGridComponent implements OnInit {
     });
   }
 
+  /**
+   * Displays the products.
+   * @returns {void}
+   */
   ngOnInit(): void {
     this.isLoaded = false
     this.getProducts()

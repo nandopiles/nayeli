@@ -1,11 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Product } from '../../interfaces/nayeli.interface';
-import { ProductApiService } from '../../services/product-api-service.service';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-product-card',
   standalone: true,
-  imports: [],
+  imports: [RouterOutlet, RouterLink],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.css'
 })

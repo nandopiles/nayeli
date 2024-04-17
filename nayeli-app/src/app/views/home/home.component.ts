@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
+import { HeaderComponent } from '../../components/header/header.component';
 import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'app-header',
+  selector: 'app-home',
   standalone: true,
-  imports: [RouterOutlet, RouterLink],
-  templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  imports: [RouterOutlet, RouterLink, HeaderComponent],
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.css'
 })
-export class HeaderComponent {
+export class HomeComponent {
   isMenuOpen: boolean = true;
 
   /**

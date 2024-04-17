@@ -6,7 +6,8 @@ from flask_cors import CORS
 
 # Initiation of Flask app and SQLAlchemy conf
 app = Flask(__name__)
-CORS(app, resources={r"/products/*": {"origins": "*"}})
+# CORS(app, resources={r"/products/*": {"origins": "*"}})
+CORS(app, supports_credentials=True)
 
 # Gets the actual directory of __init__.py file
 current_directory = Path(__file__).resolve().parent
