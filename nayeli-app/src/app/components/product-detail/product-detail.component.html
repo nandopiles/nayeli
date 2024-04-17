@@ -4,25 +4,39 @@
 <div class="bg-white">
     <div class="pt-6">
 
-        <!-- Image gallery -->
         <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
+            <!-- Image -->
             <div
                 class="aspect-h-4 aspect-w-3 hidden overflow-hidden lg:border-r lg:border-gray-200 rounded-lg lg:block">
                 <img [src]="'assets/img/'+product.img" [alt]="'Stock photo of the product '+product.name"
                     class="h-full w-full object-cover object-center">
             </div>
 
-            <!-- Options -->
-            <div class="mt-4 lg:row-span-3 lg:mt-5">
+            <!-- Information -->
+            <div class="mt-3 lg:row-span-3 lg:mt-8">
                 <h2 class="sr-only">Product information</h2>
-                <article class="mb-3">
-                    <p class="text-2xl font-extrabold">{{product.brand}}</p>
-                    <p class="text-lg font-mono">{{product.name}}</p>
-                </article>
+                <p class="text-2xl mb-3 font-extrabold">{{product.brand}}</p>
+                <p class="text-lg">{{product.name}}</p>
+                <div class="mt-10">
+                    <h3 class="text-sm font-medium text-gray-900">Highlights</h3>
+
+                    <div class="mt-4">
+                        <ul role="list" class="list-disc space-y-2 pl-4 text-sm">
+                            <li class="text-gray-400"><span class="text-gray-600">Hand cut and sewn locally</span></li>
+                            <li class="text-gray-400"><span class="text-gray-600">Dyed with our proprietary
+                                    colors</span></li>
+                            <li class="text-gray-400"><span class="text-gray-600">Pre-washed &amp; pre-shrunk</span>
+                            </li>
+                            <li class="text-gray-400"><span class="text-gray-600">Ultra-soft 100% made with love</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
+
+            <!-- Sizes -->
             <form class="mt-2 p-5 lg:border-l-2 border-gray-300">
                 <p class="text-3xl tracking-tight text-gray-900">{{product.price}}€</p>
-                <!-- Sizes -->
                 <div class="mt-4">
                     <fieldset class="mt-4">
                         <legend class="sr-only">Choose a size</legend>
