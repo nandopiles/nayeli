@@ -42,14 +42,10 @@
                             <!-- Depending on the category product it'll be displayed its type of size -->
                             @for (sizeOption of getSizeOptions(); track $index) {
                             <label
-                                class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer"
-                                [class.bg-gray-50]="sizeOption.disabled" [class.bg-white]="!sizeOption.disabled"
-                                [class.text-gray-200]="sizeOption.disabled" [class.text-gray-900]="!sizeOption.disabled"
-                                [class.shadow-sm]="!sizeOption.disabled" [class.active:ring-2]="!sizeOption.disabled"
-                                [class.ring-orange-500]="!sizeOption.disabled"
-                                [class.cursor-not-allowed]="sizeOption.disabled">
+                                class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6"
+                                [class]="sizeOption.disabled ? 'bg-gray-50 text-gray-200 cursor-not-allowed' : 'bg-white text-gray-900 shadow-sm active:ring-2 ring-orange-500 cursor-pointer'">
                                 <input type="radio" [formControl]="sizeSelected" [value]="sizeOption.value"
-                                    class="sr-only">
+                                    class="sr-only" [disabled]="sizeOption.disabled">
                                 <span>{{ sizeOption.label }}</span>
                             </label>
                             }
