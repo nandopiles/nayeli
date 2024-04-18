@@ -45,7 +45,7 @@
                                 class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6"
                                 [class]="sizeOption.disabled ? 'bg-gray-50 text-gray-200 cursor-not-allowed' : 'bg-white text-gray-900 shadow-sm active:ring-2 ring-orange-500 cursor-pointer'">
                                 <input type="radio" [formControl]="sizeSelected" [value]="sizeOption.value"
-                                    class="sr-only" [disabled]="sizeOption.disabled">
+                                    class="sr-only" [attr.disabled]="sizeOption.disabled ? true : null">
                                 <span>{{ sizeOption.label }}</span>
                             </label>
                             }
