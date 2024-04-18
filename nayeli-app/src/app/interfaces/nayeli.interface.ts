@@ -53,3 +53,9 @@ export interface ProductSearch {
     search_type: string;
     search_term: string;
 }
+
+export interface SizeOption {
+    label: string;
+    value: string;
+    disabled: boolean;
+}
