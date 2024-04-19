@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Product, SizeOption } from '../../interfaces/nayeli.interface';
-import { ProductApiService } from '../../services/product-api-service.service';
+import { ProductApiService } from '../../services/product-api.service';
 import { SpinnerComponent } from '../../components/spinner/spinner.component';
 
 @Component({
