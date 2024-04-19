@@ -13,23 +13,28 @@ import { ActionBarComponent } from '../../components/action-bar/action-bar.compo
   styleUrl: './products.component.css'
 })
 export class ProductsComponent {
-  public products: Product[] = [];
-  public isLoaded: boolean = false;
+  products: Product[] = [];
+  isLoaded: boolean = false;
 
-  public constructor(public service: ProductApiService) { }
+  constructor(public service: ProductApiService) { }
 
   /**
    * Gets all the products.
    * @returns {void}
    */
-  public getProducts(): void {
+  getProducts(): void {
     this.service.getAllProducts().subscribe((response) => {
-      this.products = response
+      this.products = response;
       console.log(response);
       this.isLoaded = true;
     });
   }
 
+  /**
+   * Gets the list of products with the filters that the user confs.
+   * @param {Product[]} filteredProducts
+   * @returns {void}
+   */
   getFilteredProducts(filteredProducts: Product[]): void {
     this.products = [];
     this.products = filteredProducts;

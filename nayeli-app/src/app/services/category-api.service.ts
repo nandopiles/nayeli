@@ -15,7 +15,7 @@ export class CategoryApiService {
    * Gets all the categories.
    * @returns {Observable<Product[]>}
    */
-  public getAllCategories(): Observable<Category[]> {
+  getAllCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(`${this.url}/categories`)
   }
 }

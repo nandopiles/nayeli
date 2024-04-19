@@ -15,7 +15,7 @@ export class ProductApiService {
    * Gets all the products.
    * @returns {Observable<Product[]>}
    */
-  public getAllProducts(): Observable<Product[]> {
+  getAllProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.url}/products`)
   }
 
@@ -24,7 +24,7 @@ export class ProductApiService {
    * @param {ProductSearch} searchRequest
    * @returns {Observable<Product[]>}
    */
-  public searchProducts(searchRequest: ProductSearch): Observable<Product[]> {
+  searchProducts(searchRequest: ProductSearch): Observable<Product[]> {
     return this.http.post<Product[]>(`${this.url}/products/search`, searchRequest);
   }
 
@@ -33,7 +33,7 @@ export class ProductApiService {
    * @param {number} productId
    * @returns {Observable<Product>}
    */
-  public getProduct(productId: number): Observable<Product> {
+  getProduct(productId: number): Observable<Product> {
     const params = new HttpParams().set('id', productId.toString());
 
     return this.http.get<Product>(`${this.url}/product`, { params });
@@ -44,7 +44,7 @@ export class ProductApiService {
    * @param {NewProduct} newProduct
    * @returns {Observable<Product>}
    */
-  public addProduct(newProduct: NewProduct): Observable<Product> {
+  addProduct(newProduct: NewProduct): Observable<Product> {
     return this.http.post<Product>(`${this.url}/product`, newProduct);
   }
 
@@ -53,7 +53,7 @@ export class ProductApiService {
    * @param {UpdatedProduct} updatedProduct
    * @returns {Observable<Product>}
    */
-  public updateProduct(updatedProduct: UpdatedProduct): Observable<Product> {
+  updateProduct(updatedProduct: UpdatedProduct): Observable<Product> {
     return this.http.put<Product>(`${this.url}/product`, updatedProduct);
   }
 
@@ -62,7 +62,7 @@ export class ProductApiService {
    * @param {number} productId the product's id which is going to be deleted
    * @returns {Observable<any>}
    */
-  public deleteProduct(productId: number): Observable<any> {
+  deleteProduct(productId: number): Observable<any> {
     const options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'

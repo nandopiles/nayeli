@@ -15,7 +15,7 @@ export class UserApiService {
    * Gets all the users.
    * @returns {Observable<User[]>}
    */
-  public getAllUsers(): Observable<User[]> {
+  getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${this.url}/users`)
   }
 
@@ -24,7 +24,7 @@ export class UserApiService {
    * @param {number} userId
    * @returns {Observable<User>}
    */
-  public getUser(userId: number): Observable<User> {
+  getUser(userId: number): Observable<User> {
     const options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
@@ -41,7 +41,7 @@ export class UserApiService {
    * @param {NewUser} newUser
    * @returns {Observable<User>}
    */
-  public addUser(newUser: NewUser): Observable<User> {
+  addUser(newUser: NewUser): Observable<User> {
     return this.http.post<User>(`${this.url}/user`, newUser);
   }
 
@@ -50,7 +50,7 @@ export class UserApiService {
    * @param {UpdatedUser} updatedUser
    * @returns {Observable<User>}
    */
-  public updateUser(updatedUser: UpdatedUser): Observable<User> {
+  updateUser(updatedUser: UpdatedUser): Observable<User> {
     return this.http.put<User>(`${this.url}/user`, updatedUser);
   }
 
@@ -59,7 +59,7 @@ export class UserApiService {
    * @param {number} userId the user's id which is going to be deleted
    * @returns {Observable<any>}
    */
-  public deleteUser(userId: number): Observable<any> {
+  deleteUser(userId: number): Observable<any> {
     const options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
