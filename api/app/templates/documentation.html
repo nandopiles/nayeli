@@ -441,20 +441,23 @@
                 <div class="mb-12">
                     <h2 id="search-products" class="text-2xl font-bold mb-4 text-gray-800">Search Products</h2>
                     <div class="text-lg text-gray-700 mb-4">
-                        <p><strong>Description:</strong> Searches products by name or brand.</p>
+                        <p><strong>Description:</strong> Searches products by category, brand, or name.</p>
                         <p><strong>Method:</strong> POST</p>
                         <p><strong>URL:</strong> /products/search</p>
                         <p><strong>Parameters:</strong></p>
                         <ul class="list-disc pl-8">
-                            <li><strong>search_type:</strong> The type of search. Can be either "name" or "brand".</li>
-                            <li><strong>search_term:</strong> The term to search for.</li>
+                            <li><strong>category_id:</strong> (Optional) The ID of the category to filter by.</li>
+                            <li><strong>brand:</strong> (Optional) The brand name to filter by.</li>
+                            <li><strong>name_contains:</strong> (Optional) The term to search for in the product name.
+                            </li>
                         </ul>
-                        <p><strong>Request Body:</strong></p>
+                        <p class="mt-2"><strong>Request Body:</strong></p>
                         <pre class="bg-gray-200 rounded-md p-4"><code class="text-sm">{
-    "search_type": "name",
-    "search_term": "search term here"
+    "category_id": "1",
+    "brand": "BrandName",
+    "name_contains": "search term here"
 }</code></pre>
-                        <p><strong>Example Response:</strong></p>
+                        <p class="mt-2"><strong>Example Response:</strong></p>
                         <pre class="bg-gray-200 rounded-md p-4"><code class="text-sm">{
     "results": [
         {
@@ -462,19 +465,22 @@
             "name": "Product1",
             "brand": "Brand1",
             "price": 99.99,
-            "img": "1.png"
+            "img": "1.png",
+            "categories": [{"id": 1, "name": "Category1"}, {"id": 2, "name": "Category2"}]
         },
         {
             "id": 2,
             "name": "Product2",
             "brand": "Brand2",
             "price": 79.99,
-            "img": "2.png"
+            "img": "2.png",
+            "categories": [{"id": 1, "name": "Category1"}]
         }
     ]
 }</code></pre>
                     </div>
                 </div>
+
 
                 <!-- Category -->
                 <h1 class="text-4xl font-bold text-gray-800 mb-8">Category</h1>
