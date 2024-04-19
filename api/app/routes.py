@@ -1,6 +1,6 @@
 from flask import jsonify, make_response, request, send_from_directory
 from app import app, db
-from app.models import Product, User
+from app.models import Product, User, Category
 
 
 # --- Home ---
@@ -188,3 +188,12 @@ def search_products():
 
     else:
         return jsonify({"error": "Invalid search type. Use 'name' or 'brand'."}), 400
+
+
+# --- Category ---
+@app.route("/categories", methods=["GET"])
+def get_categories():
+    """Gets all the categories."""
+    categories = Category.query.all()
+
+    return jsonify([category.serialize() for category in categories])
