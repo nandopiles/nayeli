@@ -1,32 +1,43 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Product } from '../../interfaces/nayeli.interface';
-import { ProductApiService } from '../../services/product-api-service.service';
+import { ProductApiService } from '../../services/product-api.service';
 import { SpinnerComponent } from '../../components/spinner/spinner.component';
 import { ProductCardComponent } from '../../components/product-card/product-card.component';
+import { ActionBarComponent } from '../../components/action-bar/action-bar.component';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [ProductCardComponent, SpinnerComponent],
+  imports: [ProductCardComponent, SpinnerComponent, ActionBarComponent],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })
 export class ProductsComponent {
-  public products: Product[] = [];
-  public isLoaded: boolean = false;
+  products: Product[] = [];
+  isLoaded: boolean = false;
 
-  public constructor(public service: ProductApiService) { }
+  constructor(public service: ProductApiService) { }
 
   /**
    * Gets all the products.
    * @returns {void}
    */
-  public getProducts(): void {
+  getProducts(): void {
     this.service.getAllProducts().subscribe((response) => {
-      this.products = response
+      this.products = response;
       console.log(response);
       this.isLoaded = true;
     });
+  }
+
+  /**
+   * Gets the list of products with the filters that the user confs.
+   * @param {Product[]} filteredProducts
+   * @returns {void}
+   */
+  getFilteredProducts(filteredProducts: Product[]): void {
+    this.products = [];
+    this.products = filteredProducts;
   }
 
   /**

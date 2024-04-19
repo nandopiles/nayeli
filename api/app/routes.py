@@ -1,6 +1,6 @@
 from flask import jsonify, make_response, request, send_from_directory
 from app import app, db
-from app.models import Product, User
+from app.models import Product, User, Category
 
 
 # --- Home ---
@@ -167,24 +167,35 @@ def delete_product():
 
 @app.route("/products/search", methods=["POST"])
 def search_products():
-    """Searches products by name or brand."""
-    data = request.json
+    category_id = request.json.get("category_id")
+    brand = request.json.get("brand")
+    name_contains = request.json.get("name_contains")
 
-    if "search_type" not in data or "search_term" not in data:
-        return jsonify({"error": "Search type and search term are required."}), 400
+    # Obtain all products
+    query = Product.query
 
-    search_type = data["search_type"]
-    search_term = data["search_term"]
+    if category_id:
+        query = query.filter(Product.categories.any(Category.id == category_id))
 
-    if search_type == "name":
-        products = Product.query.filter(Product.name.ilike(f"%{search_term}%")).all()
-        results = [product.serialize() for product in products]
-        return jsonify({"results": results})
+    if brand:
+        query = query.filter(Product.brand.ilike(f"%{brand}%"))
 
-    elif search_type == "brand":
-        products = Product.query.filter(Product.brand.ilike(f"%{search_term}%")).all()
-        results = [product.serialize() for product in products]
-        return jsonify({"results": results})
+    if name_contains:
+        query = query.filter(Product.name.ilike(f"%{name_contains}%"))
 
-    else:
-        return jsonify({"error": "Invalid search type. Use 'name' or 'brand'."}), 400
+    # Obtain all the products that match with the filters
+    products = query.all()
+
+    # Parse the Product objects into dictionaries
+    products_json = [product.serialize() for product in products]
+
+    return jsonify(products_json)
+
+
+# --- Category ---
+@app.route("/categories", methods=["GET"])
+def get_categories():
+    """Gets all the categories."""
+    categories = Category.query.all()
+
+    return jsonify([category.serialize() for category in categories])
