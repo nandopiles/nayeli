@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Product } from '../../interfaces/nayeli.interface';
 import { ProductApiService } from '../../services/product-api.service';
 import { SpinnerComponent } from '../../components/spinner/spinner.component';
@@ -28,6 +28,11 @@ export class ProductsComponent {
       console.log(response);
       this.isLoaded = true;
     });
+  }
+
+  getFilteredProducts(filteredProducts: Product[]): void {
+    this.products = [];
+    this.products = filteredProducts;
   }
 
   /**

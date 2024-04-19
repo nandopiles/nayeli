@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Category } from '../../interfaces/nayeli.interface';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Category, Product, ProductSearch } from '../../interfaces/nayeli.interface';
 import { CategoryApiService } from '../../services/category-api.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ProductApiService } from '../../services/product-api.service';
 
 @Component({
   selector: 'app-action-bar',
@@ -13,29 +14,49 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 export class ActionBarComponent implements OnInit {
   categories: Category[] = [];
   filterForm = new FormGroup({
-    category: new FormControl('all'),
-    name: new FormControl('')
+    category_id: new FormControl('all'),
+    brand: new FormControl(''),
+    name_contains: new FormControl('')
   });
+  @Output() filteredProducts = new EventEmitter<Product[]>();
 
-  public constructor(public service: CategoryApiService) { }
+  public constructor(
+    public categoryService: CategoryApiService,
+    public productService: ProductApiService
+  ) { }
 
   /**
    * Gets all the categories.
    * @returns {void}
    */
   getCategories(): void {
-    this.service.getAllCategories().subscribe((categories) => {
+    this.categoryService.getAllCategories().subscribe((categories) => {
       this.categories = categories;
       console.log(this.categories);
     })
   }
 
-  onSubmit() {
-    // Handle form submission logic here
-    // Access filtered data using this.filterForm.value
-    console.log('Filtered by:', this.filterForm.value);
+  /**
+   * Gets the products that match with the filters.
+   * @returns {void}
+   */
+  filterProducts(): void {
+    const filterParams: ProductSearch = {
+      category_id: Number(this.filterForm.value.category_id),
+      brand: String(this.filterForm.value.brand),
+      name_contains: String(this.filterForm.value.name_contains)
+    };
+
+    this.productService.searchProducts(filterParams).subscribe((filteredProducts) => {
+      console.log(filteredProducts);
+      this.filteredProducts.emit(filteredProducts);
+    });
   }
 
+  /**
+   * Loads all the name categories.
+   * @returns {void}
+   */
   ngOnInit(): void {
     this.getCategories();
   }

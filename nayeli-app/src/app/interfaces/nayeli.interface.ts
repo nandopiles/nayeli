@@ -50,8 +50,9 @@ export interface UpdatedProduct {
 }
 
 export interface ProductSearch {
-    search_type: string;
-    search_term: string;
+    category_id: number;
+    brand: string;
+    name_contains: string;
 }
 
 export interface SizeOption {

@@ -1,7 +1,7 @@
 <div
     class="bg-gray-100 mt-8 px-4 py-2 flex flex-col items-center sm:flex-row sm:justify-center lg:flex-row lg:justify-center lg:space-x-2 border rounded-md border-gray-200">
-    <form [formGroup]="filterForm" (ngSubmit)="onSubmit()">
-        <select formControlName="category"
+    <form [formGroup]="filterForm" (ngSubmit)="filterProducts()">
+        <select formControlName="category_id"
             class="mb-2 sm:mb-0 border-gray-300 border-2 px-4 py-2 rounded-lg focus:outline-none focus:border-orange-500">
             <option value="" disabled>Filter by category</option>
             <option value="all">All</option>
@@ -9,8 +9,10 @@
             <option [value]="category.id">{{category.name}}</option>
             }
         </select>
-        <input type="text" formControlName="name" placeholder="Search products"
+        <input type="text" formControlName="brand" placeholder="Search brand"
             class="mb-2 sm:mx-2 border-gray-300 border-2 px-4 py-2 rounded-lg focus:outline-none focus:border-orange-500">
+        <input type="text" formControlName="name_contains" placeholder="Search products"
+            class="mb-2 sm:mr-2 border-gray-300 border-2 px-4 py-2 rounded-lg focus:outline-none focus:border-orange-500">
         <button type="submit"
             class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 focus:outline-none">Filter</button>
     </form>
