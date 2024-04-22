@@ -11,6 +11,8 @@ import { LoginComponent } from '../../views/login/login.component';
 export class SidebarComponent {
   @Input() isSidebarOpen: boolean | undefined = false;
   @Output() close = new EventEmitter<boolean>();
+  isUserLogged: boolean = false;
+  isSignIn: boolean = false;
 
   /**
    * Closes the Sidebar component.

@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class UserApiService {
   private url: string = "http://127.0.0.1:5000"
 
-  constructor(public http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   /**
    * Gets all the users.
@@ -20,20 +20,22 @@ export class UserApiService {
   }
 
   /**
-   * Gets a user by its id.
-   * @param {number} userId
+   * Gets a user by its email.
+   * @param {string} email
+   * @param {string} password
    * @returns {Observable<User>}
    */
-  getUser(userId: number): Observable<User> {
+  getUser(email: string, password: string): Observable<User> {
+    const body = {
+      email: email,
+      password: password
+    };
     const options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
-      }),
-      body: {
-        id: userId
-      }
+      })
     };
-    return this.http.get<User>(`${this.url}/user`, options)
+    return this.http.post<User>(`${this.url}/user`, body, options);
   }
 
   /**
