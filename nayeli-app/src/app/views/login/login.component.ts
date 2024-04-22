@@ -39,18 +39,22 @@ export class LoginComponent {
     this.http.getUser(
       String(this.userInfo.value.email),
       String(this.userInfo.value.password)
-    ).subscribe((userFound: User) => {
-      if (userFound) {
-        this.userLogged = userFound;
-        this.isUserFound = true;
-        console.log(userFound);
-      } else {
-        this.isUserFound = false;
-      }
-    }, (error: HttpErrorResponse) => {
-      if (error.status === 401) {
-        // Authentication error
-        this.isUserFound = false;
+    ).pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 401) {
+          // Authentication error
+          this.isUserFound = false;
+        }
+        return throwError(() => error);
+      })
+    ).subscribe({
+      next: (userFound: User) => {
+        if (userFound.id !== 0) {
+          this.userLogged = userFound;
+          this.isUserFound = true;
+          console.log(userFound);
+          // goes to User Detail
+        }
       }
     });
   }
