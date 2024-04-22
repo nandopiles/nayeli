@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { LoginComponent } from '../../views/login/login.component';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [],
+  imports: [LoginComponent],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })
