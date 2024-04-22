@@ -18,18 +18,19 @@ def get_users():
     return jsonify([user.serialize() for user in users])
 
 
-@app.route("/user", methods=["GET"])
+@app.route("/user", methods=["POST"])
 def get_user():
-    """Gets a specific user searched by its id."""
+    """Gets a specific user searched by its email."""
     data = request.json
-    user_id = data.get("id")
+    email = data.get("email")
+    password = data.get("password")
 
-    user = User.query.get(user_id)
+    user = User.query.filter_by(email=email).first()
 
-    if user:
-        return jsonify(user.serialize())
+    if user and password == user.password:
+        return jsonify(user.serialize()), 200
     else:
-        return jsonify({"error": "User not found"}), 404
+        return jsonify({"error": "Invalid email or password"}), 401
 
 
 @app.route("/user", methods=["POST"])
