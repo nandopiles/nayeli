@@ -1,10 +1,12 @@
-<div class="flex justify-center">
-    <img class="w-64" src="/assets/logo.png" alt="">
-</div>
+<app-alert [isAlertHidden]="isUserFound"></app-alert>
 
-<div class="px-2">
+<section class="flex justify-center">
+    <img class="w-64" src="/assets/logo.png" alt="Logo img">
+</section>
+
+<article class="px-2">
     <p class="ml-2 text-gray-500">Log in:</p>
-</div>
+</article>
 
 <!-- Login form -->
 <form [formGroup]="userInfo" (ngSubmit)="loginUser()" class="mt-4 pr-40 ml-4">

@@ -20,9 +20,9 @@ export class ActionBarComponent implements OnInit {
   });
   @Output() filteredProducts = new EventEmitter<Product[]>();
 
-  public constructor(
-    public categoryService: CategoryApiService,
-    public productService: ProductApiService
+  constructor(
+    private categoryService: CategoryApiService,
+    private productService: ProductApiService
   ) { }
 
   /**

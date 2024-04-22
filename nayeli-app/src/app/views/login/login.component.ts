@@ -1,29 +1,57 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { UserApiService } from '../../services/user-api.service';
+import { User } from '../../interfaces/nayeli.interface';
+import { AlertComponent } from '../../components/alert/alert.component';
+import { catchError, throwError } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, AlertComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+  userLogged: User = {
+    id: 0,
+    email: '',
+    username: '',
+    password: '',
+    address: '',
+    bag_list: [],
+    favs_list: []
+  }
   userInfo = new FormGroup({
     email: new FormControl(''),
     password: new FormControl(''),
   });
+  isUserFound: boolean = true;
 
-  constructor(public http: UserApiService) { }
+  constructor(private http: UserApiService) { }
 
   /**
    * Checks if the data introduced is correct and Logs in.
    * @returns {void}
    */
   loginUser(): void {
-    this.http.getUser(String(this.userInfo.value.email), String(this.userInfo.value.password)).subscribe((userFound) => {
-      console.log(userFound);
-    })
+    this.http.getUser(
+      String(this.userInfo.value.email),
+      String(this.userInfo.value.password)
+    ).subscribe((userFound: User) => {
+      if (userFound) {
+        this.userLogged = userFound;
+        this.isUserFound = true;
+        console.log(userFound);
+      } else {
+        this.isUserFound = false;
+      }
+    }, (error: HttpErrorResponse) => {
+      if (error.status === 401) {
+        // Authentication error
+        this.isUserFound = false;
+      }
+    });
   }
 }
