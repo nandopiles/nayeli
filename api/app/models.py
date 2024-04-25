@@ -39,6 +39,7 @@ class User(db.Model):
         return {
             "id": self.id,
             "username": self.username,
+            "password": self.password,
             "email": self.email,
             "address": self.address,
             "favs_list": [product.serialize() for product in self.favs_list],

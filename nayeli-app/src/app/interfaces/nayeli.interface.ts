@@ -5,6 +5,7 @@ export interface User {
     favs_list: Product[];
     id: number;
     username: string;
+    password: string;
 }
 
 export interface Product {

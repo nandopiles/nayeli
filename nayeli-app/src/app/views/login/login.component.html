@@ -1,0 +1,23 @@
+<app-alert [isAlertHidden]="isUserFound"></app-alert>
+
+<section class="flex justify-center">
+    <img class="w-64" src="/assets/logo.png" alt="Logo img">
+</section>
+
+<article class="px-2">
+    <p class="ml-2 text-gray-500">Log in:</p>
+</article>
+
+<!-- Login form -->
+<form [formGroup]="userInfo" (ngSubmit)="loginUser()" class="mt-4 pr-40 ml-4">
+    <input formControlName="email" type="email" placeholder="Email"
+        class="w-full p-2 border border-gray-300 rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300">
+    <input formControlName="password" type="password" placeholder="Password"
+        class="w-full mt-4 p-2 border border-gray-300 rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300">
+
+    <div class="mt-6">
+        <button type="submit"
+            class="flex px-5 py-3 justify-center items-center bg-orange-500 text-white rounded-md text-sm gap-1">
+            Log in</button>
+    </div>
+</form>
