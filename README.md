@@ -1,6 +1,6 @@
 # Nayeli Online Store
 
-![Nayeli Logo](screenshots/logo.png)
+<img src="screenshots/logo.png" width="270" alt="Logo">
 
 Nayeli is an online store composed of two main applications: an API built with Flask and Nayeli Online Store built with Angular. This repository serves as the central hub for both components.
 
