@@ -29,7 +29,6 @@ export class LoginComponent {
     password: new FormControl(''),
   });
   isUserFound: boolean = true;
-  @Output() userToSend = new EventEmitter<User>();
 
   constructor(
     private http: UserApiService,
@@ -38,23 +37,19 @@ export class LoginComponent {
   ) { }
 
   /**
-   * Sends the user that has been logged in.
-   * @param {User} userLogged
-   * @returns {void}
-   */
-  sendUserLogged(userLogged: User): void {
-    this.userToSend.emit(userLogged);
-  }
-
-  /**
    * Redirects to the url passed by parameter.
    * @param {string} redirectUrl
    * @returns {void}
    */
   handlerSuccessAndRedirect(userFound: User, redirectUrl: string): void {
-    this.sendUserLogged(userFound);
+    this.http.setUser(userFound);
     this.router.navigate([redirectUrl], { relativeTo: this.route })
   }
+
+  test(): void {
+    console.log("aa");
+  }
+
   /**
    * Checks if the data introduced is correct and Logs in.
    * @returns {void}
@@ -76,8 +71,6 @@ export class LoginComponent {
         if (userFound.id !== 0) {
           this.userLogged = userFound;
           this.isUserFound = true;
-          console.log(userFound);
-          // goes to User Detail
           this.handlerSuccessAndRedirect(userFound, '/home');
         }
       }

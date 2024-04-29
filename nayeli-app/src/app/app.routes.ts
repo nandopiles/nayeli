@@ -10,6 +10,14 @@ import { LoginLayoutComponent } from './layouts/login-layout/login-layout.compon
 export const routes: Routes = [
     {
         path: '',
+        component: LoginLayoutComponent,
+        children: [
+            { path: '', redirectTo: 'login', pathMatch: 'full' },
+            { path: 'login', component: LoginComponent }
+        ]
+    },
+    {
+        path: '',
         component: MainLayoutComponent,
         children: [
             { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -17,13 +25,6 @@ export const routes: Routes = [
             { path: 'products', component: ProductsComponent },
             { path: 'product/:id', component: ProductDetailComponent },
             { path: 'contact', component: ContactComponent }
-        ]
-    },
-    {
-        path: '',
-        component: LoginLayoutComponent,
-        children: [
-            { path: 'login', component: LoginComponent }
         ]
     }
 ];
