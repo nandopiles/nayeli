@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { UserApiService } from '../../services/user-api.service';
 import { User } from '../../interfaces/nayeli.interface';
 import { AlertComponent } from '../../components/alert/alert.component';
 import { catchError, throwError } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -28,9 +29,32 @@ export class LoginComponent {
     password: new FormControl(''),
   });
   isUserFound: boolean = true;
+  @Output() userToSend = new EventEmitter<User>();
 
-  constructor(private http: UserApiService) { }
+  constructor(
+    private http: UserApiService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) { }
 
+  /**
+   * Sends the user that has been logged in.
+   * @param {User} userLogged
+   * @returns {void}
+   */
+  sendUserLogged(userLogged: User): void {
+    this.userToSend.emit(userLogged);
+  }
+
+  /**
+   * Redirects to the url passed by parameter.
+   * @param {string} redirectUrl
+   * @returns {void}
+   */
+  handlerSuccessAndRedirect(userFound: User, redirectUrl: string): void {
+    this.sendUserLogged(userFound);
+    this.router.navigate([redirectUrl], { relativeTo: this.route })
+  }
   /**
    * Checks if the data introduced is correct and Logs in.
    * @returns {void}
@@ -54,6 +78,7 @@ export class LoginComponent {
           this.isUserFound = true;
           console.log(userFound);
           // goes to User Detail
+          this.handlerSuccessAndRedirect(userFound, '/home');
         }
       }
     });
