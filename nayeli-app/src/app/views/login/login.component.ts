@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { UserApiService } from '../../services/user-api.service';
 import { User } from '../../interfaces/nayeli.interface';
@@ -44,10 +44,6 @@ export class LoginComponent {
   handlerSuccessAndRedirect(userFound: User, redirectUrl: string): void {
     this.http.setUser(userFound);
     this.router.navigate([redirectUrl], { relativeTo: this.route })
-  }
-
-  test(): void {
-    console.log("aa");
   }
 
   /**

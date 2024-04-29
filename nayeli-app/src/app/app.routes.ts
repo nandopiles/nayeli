@@ -6,6 +6,7 @@ import { ContactComponent } from './views/contact/contact.component';
 import { LoginComponent } from './views/login/login.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
+import { SignupComponent } from './views/signup/signup.component';
 
 export const routes: Routes = [
     {
@@ -13,7 +14,8 @@ export const routes: Routes = [
         component: LoginLayoutComponent,
         children: [
             { path: '', redirectTo: 'login', pathMatch: 'full' },
-            { path: 'login', component: LoginComponent }
+            { path: 'login', component: LoginComponent },
+            { path: 'signup', component: SignupComponent }
         ]
     },
     {
