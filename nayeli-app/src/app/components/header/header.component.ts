@@ -10,7 +10,6 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 })
 export class HeaderComponent {
   isMenuOpen: boolean = true;
-  @Input() isSidebarOpen: boolean | undefined = false;
 
   /**
    * Displays the mobile's menu.
@@ -18,14 +17,5 @@ export class HeaderComponent {
    */
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
-  }
-
-  /**
-   * Displays the Sidebar where is going to be the login, register and conf functionality.
-   * @returns {void}
-   */
-  toggleSidebar(isOpened?: boolean): void {
-    isOpened === undefined ? this.isSidebarOpen = true : this.isSidebarOpen = isOpened;
-    console.log(this.isSidebarOpen ? "Sidebar is opened" : "Sidebar is closed");
   }
 }

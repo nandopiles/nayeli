@@ -3,10 +3,15 @@
         <div class="container mx-auto px-4 flex relative pt-6">
             <div class="sm:w-2/3 lg:w-2/5 flex flex-col relative">
                 <span class="w-20 h-2 bg-[#e4e2dd] mb-10"></span>
-                <h1
-                    class="mb-9 font-bebas-neue uppercase text-6xl sm:text-8xl font-black flex flex-col leading-none text-[#e4e2dd]">
-                    Bla
-                    <span class="text-5xl sm:text-7xl"> bla bla</span>
+                <h1 class="mb-9 uppercase text-5xl sm:text-7xl font-black flex flex-col leading-none text-orange-400">
+                    @if (currentUser !== null) {
+                    Welcome {{ currentUser.username }}!
+                    } @else {
+                    Error...
+                    }
+                </h1>
+                <h1 class="mb-9 uppercase text-3xl sm:text-5xl font-black flex flex-col leading-none text-[#e4e2dd]">
+                    Bla bla bla
                 </h1>
                 <p class="text-sm sm:text-base text-[#e4e2dd] mb-5">
                     Bla Bla Bla... Tired of all the talk but no action? Say no more! Welcome to our online store where
