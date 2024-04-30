@@ -55,7 +55,7 @@ export class UserApiService {
    * @returns {Observable<User>}
    */
   addUser(newUser: NewUser): Observable<User> {
-    return this.http.post<User>(`${this.url}/user`, newUser);
+    return this.http.post<User>(`${this.url}/user/signup`, newUser);
   }
 
   /**
