@@ -5,12 +5,12 @@ import { User } from '../../interfaces/nayeli.interface';
 import { AlertComponent } from '../../components/alert/alert.component';
 import { catchError, throwError } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, AlertComponent],
+  imports: [ReactiveFormsModule, AlertComponent, RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
