@@ -33,7 +33,7 @@ def get_user():
         return jsonify({"error": "Invalid email or password"}), 401
 
 
-@app.route("/user", methods=["POST"])
+@app.route("/user/signup", methods=["POST"])
 def create_user():
     """Inserts a new user with the info given."""
     data = request.json
