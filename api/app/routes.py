@@ -38,9 +38,14 @@ def create_user():
     """Inserts a new user with the info given."""
     data = request.json
 
-    # Checks if it has all the required camps
-    if not all(key in data for key in ["username", "password", "email", "address"]):
-        return jsonify({"error": "Missing data"}), 400
+    required_fields = ["username", "password", "email", "address"]
+    if not all(key in data and data[key] for key in required_fields):
+        return jsonify({"error": "Missing or empty data for required fields"}), 400
+
+    if User.query.filter(
+        (User.email == data["email"]) | (User.username == data["username"])
+    ).first():
+        return jsonify({"error": "Email or username already exists"}), 400
 
     new_user = User(
         username=data["username"],
