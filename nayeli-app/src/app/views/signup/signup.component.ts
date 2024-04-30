@@ -22,12 +22,23 @@ export class SignupComponent {
     address: new FormControl('')
   });
   isInfoValid: boolean = true;
+  isAlertReadyToHidden: boolean = false;
 
   constructor(
     private http: UserApiService,
     private router: Router,
     private route: ActivatedRoute
   ) { }
+
+  /**
+   * Controls if the alert is closed or no.
+   * @param {boolean} isClosed
+   * @returns {void}
+   */
+  handleAlertToClose(isClosed: boolean): void {
+    this.isAlertReadyToHidden = isClosed;
+    this.isInfoValid = true;
+  }
 
   /**
    * Redirects to the url passed by parameter.
@@ -57,6 +68,7 @@ export class SignupComponent {
       }),
       error: (error) => {
         console.log("Error trying to register the new user: ", error);
+        this.isInfoValid = false;
       }
     });
   }

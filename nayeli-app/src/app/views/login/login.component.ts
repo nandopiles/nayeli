@@ -29,12 +29,23 @@ export class LoginComponent {
     password: new FormControl(''),
   });
   isUserFound: boolean = true;
+  isAlertReadyToHidden: boolean = false;
 
   constructor(
     private http: UserApiService,
     private router: Router,
     private route: ActivatedRoute
   ) { }
+
+  /**
+   * Controls if the alert is closed or no.
+   * @param {boolean} isClosed
+   * @returns {void}
+   */
+  handleAlertToClose(isClosed: boolean): void {
+    this.isAlertReadyToHidden = isClosed;
+    this.isUserFound = true;
+  }
 
   /**
    * Redirects to the url passed by parameter.
