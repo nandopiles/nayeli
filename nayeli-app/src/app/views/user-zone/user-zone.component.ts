@@ -3,6 +3,7 @@ import { User } from '../../interfaces/nayeli.interface';
 import { UserApiService } from '../../services/user-api.service';
 import { ProductCartComponent } from '../../components/product-cart/product-cart.component';
 import { ProductFavoriteComponent } from '../../components/product-favorite/product-favorite.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-zone',
@@ -23,7 +24,20 @@ export class UserZoneComponent implements OnInit {
   };
   totalPrice: number = 0;
 
-  constructor(private http: UserApiService) { }
+  constructor(
+    private http: UserApiService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) { }
+
+  /**
+   * Logs out.
+   * @returns {void}
+   */
+  logOut(): void {
+    this.http.logOut();
+    this.router.navigate(["/login"], { relativeTo: this.route })
+  }
 
   /**
    * Calcs the final price of the cart.

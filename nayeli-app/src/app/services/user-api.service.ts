@@ -14,6 +14,14 @@ export class UserApiService {
   constructor(private http: HttpClient) { }
 
   /**
+   * Cleans the user and logs out.
+   * @returns {void}
+   */
+  logOut(): void {
+    this.currentUserSubject.next(null);
+  }
+
+  /**
    * Sets the User logged to be accessible from anywhere.
    * @param {User} user
    * @returns {void}
