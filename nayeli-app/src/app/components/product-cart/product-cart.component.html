@@ -1,6 +1,7 @@
 <li class="flex items-center justify-between my-4">
     <div class="flex items-center">
-        <img [src]="'/assets/img/'+ product.img" alt="Producto" class="w-12 h-12 rounded-full mr-4">
+        <img [src]="'/assets/img/'+ product.img" [alt]="'image of the product' + product.name"
+            class="w-12 h-12 rounded-full mr-4">
         <div>
             <h3 class="font-semibold">{{product.name}}</h3>
             <p class="text-gray-600">Price: {{product.price}}€</p>
