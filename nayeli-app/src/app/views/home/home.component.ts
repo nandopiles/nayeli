@@ -33,10 +33,14 @@ export class HomeComponent implements OnInit {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
+  /**
+   * Gets the user logged.
+   * @returns {void}
+   */
   ngOnInit(): void {
     this.http.currentUser.subscribe(user => {
       console.log(user);
-      
+
       this.currentUser = user;
     });
   }
