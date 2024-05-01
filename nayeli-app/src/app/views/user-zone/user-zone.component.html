@@ -1,7 +1,7 @@
 <div class="bg-gray-100">
     <div class="container mx-auto px-4 py-8">
         <header class="flex items-center justify-between mb-8">
-            <h1 class="text-2xl font-bold">User Zone</h1>
+            <h1 class="text-2xl font-bold">{{currentUser?.username}}'s user zone</h1>
             <a href="#" class="text-orange-500 text-lg hover:underline">Log out</a>
         </header>
 
@@ -11,37 +11,25 @@
                 <h2 class="text-lg font-semibold mb-4">Cart</h2>
                 <!-- Cart List -->
                 <ul>
+                    @if (currentUser && currentUser.bag_list.length > 0) {
+                    @for (product of currentUser.bag_list; track $index) {
                     <!-- Cart Product -->
-                    <li class="flex items-center justify-between mb-4">
-                        <div class="flex items-center">
-                            <img src="https://via.placeholder.com/50" alt="Producto"
-                                class="w-12 h-12 rounded-full mr-4">
-                            <div>
-                                <h3 class="font-semibold">Product name</h3>
-                                <p class="text-gray-600">Price: XX.XX€</p>
-                            </div>
-                        </div>
-                        <span class="text-gray-600">Quantity: 1</span>
+                    <app-product-cart [product]="product"></app-product-cart>
+                    }
 
-                        <button class="text-red-500 hover:text-red-600">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
-                    </li>
+                    <!-- Total -->
+                    <div class="mt-8">
+                        <p class="text-lg font-semibold mb-2">Total: <span
+                                class="text-xl font-bold">{{totalPrice}}€</span></p>
+                    </div>
+                    <!-- Pay -->
+                    <button
+                        class="bg-orange-400 text-white font-semibold py-2 px-4 rounded-lg mt-6 hover:bg-orange-500">Buy
+                        it!</button>
+                    } @else {
+                    <p class="text-gray-600 mt-4">You don't have any favorite products yet.</p>
+                    }
                 </ul>
-                <hr>
-
-                <!-- Total -->
-                <div class="mt-8">
-                    <p class="text-lg font-semibold mb-2">Total:</p>
-                    <p class="text-xl font-bold">XX.XX€</p>
-                </div>
-                <!-- Pay -->
-                <button class="bg-orange-400 text-white font-semibold py-2 px-4 rounded-lg mt-6 hover:bg-orange-500">Buy
-                    it!</button>
             </section>
 
             <!--  Favorite -->
