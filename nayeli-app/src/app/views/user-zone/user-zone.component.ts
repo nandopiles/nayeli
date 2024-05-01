@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../interfaces/nayeli.interface';
 import { UserApiService } from '../../services/user-api.service';
 import { ProductCartComponent } from '../../components/product-cart/product-cart.component';
+import { ProductFavoriteComponent } from '../../components/product-favorite/product-favorite.component';
 
 @Component({
   selector: 'app-user-zone',
   standalone: true,
-  imports: [ProductCartComponent],
+  imports: [ProductCartComponent, ProductFavoriteComponent],
   templateUrl: './user-zone.component.html',
   styleUrl: './user-zone.component.css'
 })
