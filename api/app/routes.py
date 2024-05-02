@@ -97,6 +97,23 @@ def update_user():
     return jsonify(user.serialize())
 
 
+@app.route("/user/<int:user_id>/add_to_cart/<int:product_id>", methods=["PUT"])
+def add_to_cart(user_id, product_id):
+    """Adds a product to the user's cart."""
+    user = User.query.get(user_id)
+    if not user:
+        return make_response(jsonify({"error": "User not found"}), 404)
+
+    product = Product.query.get(product_id)
+    if not product:
+        return make_response(jsonify({"error": "Product not found"}), 404)
+
+    user.bag_list.append(product)
+    db.session.commit()
+
+    return jsonify(user.serialize())
+
+
 # --- Products ---
 @app.route("/products", methods=["GET"])
 def get_products():
