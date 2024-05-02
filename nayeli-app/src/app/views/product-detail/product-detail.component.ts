@@ -63,8 +63,12 @@ export class ProductDetailComponent {
       if (this.isProductInFavorites()) {
         this.userService.removeProductFromFavorites(this.currentUser.id, this.product.id).subscribe({
           next: (updatedUser) => {
-            console.log('Product removed from favorites:', updatedUser);
-            // this.currentUser?.favs_list.splice(index, 1);
+            const index = this.currentUser?.favs_list.findIndex(product => product.id === this.product.id);
+
+            if (index !== undefined) {
+              this.currentUser?.favs_list.splice(index, 1);
+              console.log('Product removed from favorites:', updatedUser);
+            }
           },
           error: (error) => {
             console.error('Error removing product from favorites:', error);
