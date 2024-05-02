@@ -54,8 +54,8 @@
                 </div>
                 <p class="mt-4 text-nowrap">Size selected: <b>{{ sizeSelected.value }}</b></p>
 
-                <button type="submit"
-                    class="mt-10 lg:w-full text-white bg-gradient-to-br from-orange-300 to-orange-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-orange-200 dark:focus:ring-orange-800 font-medium rounded-lg text-md px-5 py-2.5 text-center">Add
+                <button (click)="addToCart()" type="submit"
+                    class="mt-10 lg:w-full text-white bg-gradient-to-br from-orange-300 to-orange-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-orange-200 dark:focus:ring-orange-600 font-medium rounded-lg text-md px-5 py-2.5 text-center">Add
                     To Cart</button>
             </form>
         </div>

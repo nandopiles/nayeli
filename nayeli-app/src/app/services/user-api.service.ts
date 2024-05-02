@@ -91,4 +91,14 @@ export class UserApiService {
     };
     return this.http.delete<any>(`${this.url}/user`, options);
   }
+
+  /**
+   * Adds the product into the user's cart.
+   * @param {number} userId
+   * @param {number} productId
+   * @returns {any}
+   */
+  addProductToUserCart(userId: number, productId: number): Observable<User> {
+    return this.http.put<User>(`${this.url}/user/${userId}/add_to_cart/${productId}`, {});
+  }
 }

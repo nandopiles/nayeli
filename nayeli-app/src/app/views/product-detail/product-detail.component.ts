@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Product, SizeOption } from '../../interfaces/nayeli.interface';
+import { Product, SizeOption, User } from '../../interfaces/nayeli.interface';
 import { ProductApiService } from '../../services/product-api.service';
 import { SpinnerComponent } from '../../components/spinner/spinner.component';
+import { UserApiService } from '../../services/user-api.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -21,13 +22,42 @@ export class ProductDetailComponent implements OnInit {
     name: '',
     price: 0
   };
+  currentUser: User | null = {
+    id: 0,
+    email: '',
+    username: '',
+    password: '',
+    address: '',
+    bag_list: [],
+    favs_list: []
+  };
   isLoading: boolean = true;
   sizeSelected = new FormControl('');
 
   constructor(
     private route: ActivatedRoute,
-    private service: ProductApiService
+    private http: ProductApiService,
+    private userService: UserApiService
   ) { }
+
+  /**
+   * Adds the product selected into the cart of the user logged.
+   * @returns {void}
+   */
+  addToCart(): void {
+    if (this.currentUser) {
+      this.userService.addProductToUserCart(this.currentUser.id, this.product.id).subscribe({
+        next: (updatedUser) => {
+          console.log('User updated successfully:', updatedUser);
+          // this.currentUser = updatedUser;
+          this.currentUser?.bag_list.push(this.product);
+        },
+        error: (error) => {
+          console.error('Error updating user:', error);
+        }
+      });
+    }
+  }
 
   /**
    * Gets the size values of the product selected.
@@ -88,15 +118,21 @@ export class ProductDetailComponent implements OnInit {
   }
 
   /**
-   * Loads the info of the product selected.
+   * Loads the info of the product selected and gets the user logged.
    * @returns {void}
    */
   ngOnInit(): void {
     const productId = this.route.snapshot.paramMap.get('id');
 
-    this.service.getProduct(Number(productId)).subscribe((product) => {
+    this.http.getProduct(Number(productId)).subscribe((product) => {
       this.product = product
       this.isLoading = false
+    });
+
+    this.userService.currentUser.subscribe(user => {
+      console.log(user);
+
+      this.currentUser = user;
     });
   }
 }
