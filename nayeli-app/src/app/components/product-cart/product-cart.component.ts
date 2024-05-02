@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../../interfaces/nayeli.interface';
 
 @Component({
@@ -17,4 +17,14 @@ export class ProductCartComponent {
     img: '',
     categories: []
   };
+  @Input() index: number = 0;
+  @Output() remove = new EventEmitter<number>();
+
+  /**
+   * Emits the index of the product to remove in the cart.
+   * @returns {void}
+   */
+  removeProduct(): void {
+    this.remove.emit(this.index);
+  }
 }

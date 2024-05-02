@@ -14,7 +14,8 @@
                     @if (currentUser && currentUser.bag_list.length > 0) {
                     @for (product of currentUser.bag_list; track $index) {
                     <!-- Cart Product -->
-                    <app-product-cart [product]="product"></app-product-cart>
+                    <app-product-cart [product]="product" [index]="$index"
+                        (remove)="removeProductFromCart($event)"></app-product-cart>
                     }
 
                     <!-- Total -->

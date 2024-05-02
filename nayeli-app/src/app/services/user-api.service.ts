@@ -96,9 +96,19 @@ export class UserApiService {
    * Adds the product into the user's cart.
    * @param {number} userId
    * @param {number} productId
-   * @returns {any}
+   * @returns {Observable<User>}
    */
   addProductToUserCart(userId: number, productId: number): Observable<User> {
     return this.http.put<User>(`${this.url}/user/${userId}/add_to_cart/${productId}`, {});
+  }
+
+  /**
+   * Removes the product from the user's cart.
+   * @param {number} userId
+   * @param {number} productId
+   * @returns {Observable<User>}
+   */
+  removeProductFromUserCart(userId: number, productId: number): Observable<User> {
+    return this.http.put<User>(`${this.url}/user/${userId}/remove_from_cart/${productId}`, {});
   }
 }

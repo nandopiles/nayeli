@@ -114,6 +114,25 @@ def add_to_cart(user_id, product_id):
     return jsonify(user.serialize())
 
 
+@app.route("/user/<int:user_id>/remove_from_cart/<int:product_id>", methods=["PUT"])
+def remove_from_cart(user_id, product_id):
+    """Removes a product from the user's cart."""
+    user = User.query.get(user_id)
+    if not user:
+        return make_response(jsonify({"error": "User not found"}), 404)
+
+    product = Product.query.get(product_id)
+    if not product:
+        return make_response(jsonify({"error": "Product not found"}), 404)
+
+    if product in user.bag_list:
+        user.bag_list.remove(product)
+        db.session.commit()
+        return jsonify(user.serialize())
+
+    return make_response(jsonify({"error": "Product not in user's cart"}), 400)
+
+
 # --- Products ---
 @app.route("/products", methods=["GET"])
 def get_products():

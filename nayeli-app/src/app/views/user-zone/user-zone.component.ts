@@ -31,6 +31,27 @@ export class UserZoneComponent implements OnInit {
   ) { }
 
   /**
+   * Removes a product from the cart.
+   * @param {number} index
+   * @returns {void}
+   */
+  removeProductFromCart(index: number): void {
+    if (this.currentUser) {
+      const productIdToRemove = this.currentUser.bag_list[index].id;
+      
+      this.http.removeProductFromUserCart(this.currentUser.id, productIdToRemove).subscribe({
+        next: (updatedUser) => {
+          console.log('Product removed successfully from user cart:', updatedUser);
+          this.currentUser?.bag_list.splice(index, 1);
+        },
+        error: (error) => {
+          console.error('Error removing product from user cart:', error);
+        }
+      });
+    }
+  }
+
+  /**
    * Logs out.
    * @returns {void}
    */
