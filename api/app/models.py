@@ -1,9 +1,16 @@
 from app import db
 
 
-# Intermediate table between User and Product for the favorites list and the shopping cart
+# Intermediate table between User and Product for the favorites list
 user_product = db.Table(
     "user_product",
+    db.Column("user_id", db.Integer, db.ForeignKey("user.id"), primary_key=True),
+    db.Column("product_id", db.Integer, db.ForeignKey("product.id"), primary_key=True),
+)
+
+# Intermediate table between User and Product for the bag list
+user_cart_product = db.Table(
+    "user_cart_product",
     db.Column("user_id", db.Integer, db.ForeignKey("user.id"), primary_key=True),
     db.Column("product_id", db.Integer, db.ForeignKey("product.id"), primary_key=True),
 )
@@ -31,7 +38,7 @@ class User(db.Model):
     )
     bag_list = db.relationship(
         "Product",
-        secondary=user_product,
+        secondary=user_cart_product,
         backref=db.backref("added_to_bag_by", lazy="dynamic"),
     )
 
