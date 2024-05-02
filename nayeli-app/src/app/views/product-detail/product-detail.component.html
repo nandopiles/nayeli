@@ -54,9 +54,31 @@
                 </div>
                 <p class="mt-4 text-nowrap">Size selected: <b>{{ sizeSelected.value }}</b></p>
 
-                <button type="submit"
-                    class="mt-10 lg:w-full text-white bg-gradient-to-br from-orange-300 to-orange-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-orange-200 dark:focus:ring-orange-800 font-medium rounded-lg text-md px-5 py-2.5 text-center">Add
-                    To Cart</button>
+
+                <div class="grid grid-cols-11 gap-4 py-5">
+                    <button (click)="addToCart()" type="submit"
+                        class="col-span-10 lg:w-full text-white bg-gradient-to-br from-orange-300 to-orange-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-orange-200 dark:focus:ring-orange-600 font-medium rounded-lg text-md py-2 text-center">Add
+                        To Cart</button>
+                    <button (click)="toggleFavorite()" class="col-span-1">
+                        @if (isProductInFavorites()) {
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-heart-filled"
+                            width="35" height="35" viewBox="0 0 24 24" stroke-width="1.5" stroke="#9e9e9e" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path
+                                d="M6.979 3.074a6 6 0 0 1 4.988 1.425l.037 .033l.034 -.03a6 6 0 0 1 4.733 -1.44l.246 .036a6 6 0 0 1 3.364 10.008l-.18 .185l-.048 .041l-7.45 7.379a1 1 0 0 1 -1.313 .082l-.094 -.082l-7.493 -7.422a6 6 0 0 1 3.176 -10.215z"
+                                stroke-width="0" fill="currentColor" />
+                        </svg>
+                        }@else {
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-heart" width="35"
+                            height="35" viewBox="0 0 24 24" stroke-width="1.5" stroke="#9e9e9e" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
+                        </svg>
+                        }
+                    </button>
+                </div>
             </form>
         </div>
     </div>

@@ -16,7 +16,10 @@ export class ProductsComponent {
   products: Product[] = [];
   isLoaded: boolean = false;
 
-  constructor(public service: ProductApiService) { }
+  constructor(public service: ProductApiService) {
+    this.isLoaded = false
+    this.getProducts()
+  }
 
   /**
    * Gets all the products.
@@ -38,14 +41,5 @@ export class ProductsComponent {
   getFilteredProducts(filteredProducts: Product[]): void {
     this.products = [];
     this.products = filteredProducts;
-  }
-
-  /**
-   * Displays the products.
-   * @returns {void}
-   */
-  ngOnInit(): void {
-    this.isLoaded = false
-    this.getProducts()
   }
 }

@@ -14,6 +14,14 @@ export class UserApiService {
   constructor(private http: HttpClient) { }
 
   /**
+   * Cleans the user and logs out.
+   * @returns {void}
+   */
+  logOut(): void {
+    this.currentUserSubject.next(null);
+  }
+
+  /**
    * Sets the User logged to be accessible from anywhere.
    * @param {User} user
    * @returns {void}
@@ -82,5 +90,45 @@ export class UserApiService {
       }
     };
     return this.http.delete<any>(`${this.url}/user`, options);
+  }
+
+  /**
+   * Adds the product into the user's cart.
+   * @param {number} userId
+   * @param {number} productId
+   * @returns {Observable<User>}
+   */
+  addProductToUserCart(userId: number, productId: number): Observable<User> {
+    return this.http.put<User>(`${this.url}/user/${userId}/add_to_cart/${productId}`, {});
+  }
+
+  /**
+   * Removes the product from the user's cart.
+   * @param {number} userId
+   * @param {number} productId
+   * @returns {Observable<User>}
+   */
+  removeProductFromUserCart(userId: number, productId: number): Observable<User> {
+    return this.http.put<User>(`${this.url}/user/${userId}/remove_from_cart/${productId}`, {});
+  }
+
+  /**
+   * Adds the product to the favorite list of the user.
+   * @param {number} userId
+   * @param {number} productId
+   * @returns {Observable<User>}
+   */
+  addToFavorites(userId: number, productId: number): Observable<User> {
+    return this.http.put<User>(`${this.url}/user/${userId}/add_to_favorites/${productId}`, {});
+  }
+
+  /**
+   * Removes a product from the users favorite list.
+   * @param {number} userId
+   * @param {number} productId
+   * @returns {Observable<User>}
+   */
+  removeProductFromFavorites(userId: number, productId: number): Observable<User> {
+    return this.http.put<User>(`${this.url}/user/${userId}/remove_from_favorites/${productId}`, {});
   }
 }

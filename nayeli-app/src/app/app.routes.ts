@@ -7,6 +7,7 @@ import { LoginComponent } from './views/login/login.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
 import { SignupComponent } from './views/signup/signup.component';
+import { UserZoneComponent } from './views/user-zone/user-zone.component';
 
 export const routes: Routes = [
     {
@@ -26,7 +27,8 @@ export const routes: Routes = [
             { path: 'home', component: HomeComponent },
             { path: 'products', component: ProductsComponent },
             { path: 'product/:id', component: ProductDetailComponent },
-            { path: 'contact', component: ContactComponent }
+            { path: 'contact', component: ContactComponent },
+            { path: 'user-zone', component: UserZoneComponent }
         ]
     }
 ];

@@ -1,0 +1,54 @@
+<div class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <header class="flex items-center justify-between mb-8">
+            <h1 class="text-2xl font-bold">{{currentUser?.username}}'s user zone</h1>
+            <p (click)="logOut()" class="text-orange-500 text-lg hover:underline cursor-pointer">Log out</p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Cart -->
+            <section class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-lg font-semibold mb-4">Cart</h2>
+                <!-- Cart List -->
+                <ul>
+                    @if (currentUser && currentUser.bag_list.length > 0) {
+                    @for (product of currentUser.bag_list; track $index) {
+                    <!-- Cart Product -->
+                    <app-product-cart [product]="product" [index]="$index"
+                        (remove)="removeProductFromCart($event)"></app-product-cart>
+                    }
+
+                    <!-- Total -->
+                    <div class="mt-8">
+                        <p class="text-lg font-semibold mb-2">Total: <span
+                                class="text-xl font-bold">{{totalPrice}}€</span></p>
+                    </div>
+                    <!-- Pay -->
+                    <button
+                        class="bg-orange-400 text-white font-semibold py-2 px-4 rounded-lg mt-6 hover:bg-orange-500">Buy
+                        it!</button>
+                    } @else {
+                    <p class="text-gray-600 mt-4">You don't have any favorite products yet.</p>
+                    }
+                </ul>
+            </section>
+
+            <!--  Favorite -->
+            <section class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-lg font-semibold mb-4">Favorite List</h2>
+                <!-- Favorite List -->
+                <ul>
+                    @if (currentUser && currentUser.favs_list.length > 0) {
+                    @for (product of currentUser.favs_list; track $index) {
+                    <!-- Favorite Product -->
+                    <app-product-favorite [product]="product" [index]="$index"
+                        (remove)="removeProductFromFavorites($event)"></app-product-favorite>
+                    }
+                    } @else {
+                    <p class="text-gray-600 mt-4">You don't have any favorite products yet.</p>
+                    }
+                </ul>
+            </section>
+        </div>
+    </div>
+</div>

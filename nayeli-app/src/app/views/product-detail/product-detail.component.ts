@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Product, SizeOption } from '../../interfaces/nayeli.interface';
+import { Product, SizeOption, User } from '../../interfaces/nayeli.interface';
 import { ProductApiService } from '../../services/product-api.service';
 import { SpinnerComponent } from '../../components/spinner/spinner.component';
+import { UserApiService } from '../../services/user-api.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -12,7 +13,7 @@ import { SpinnerComponent } from '../../components/spinner/spinner.component';
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.css'
 })
-export class ProductDetailComponent implements OnInit {
+export class ProductDetailComponent {
   product: Product = {
     id: 0,
     brand: '',
@@ -21,13 +22,100 @@ export class ProductDetailComponent implements OnInit {
     name: '',
     price: 0
   };
+  currentUser: User | null = {
+    id: 0,
+    email: '',
+    username: '',
+    password: '',
+    address: '',
+    bag_list: [],
+    favs_list: []
+  };
   isLoading: boolean = true;
   sizeSelected = new FormControl('');
 
   constructor(
     private route: ActivatedRoute,
-    private service: ProductApiService
-  ) { }
+    private http: ProductApiService,
+    private userService: UserApiService
+  ) {
+    const productId = this.route.snapshot.paramMap.get('id');
+
+    this.http.getProduct(Number(productId)).subscribe((product) => {
+      this.product = product
+      this.isLoading = false
+    });
+
+    this.userService.currentUser.subscribe(user => {
+      console.log(user);
+
+      this.currentUser = user;
+    });
+  }
+
+
+  /**
+   * Handles if the product has to be added or removed from the favorite list. (do 2 methods)
+   * @returns {void}
+   */
+  toggleFavorite(): void {
+    if (this.currentUser) {
+      if (this.isProductInFavorites()) {
+        this.userService.removeProductFromFavorites(this.currentUser.id, this.product.id).subscribe({
+          next: (updatedUser) => {
+            const index = this.currentUser?.favs_list.findIndex(product => product.id === this.product.id);
+
+            if (index !== undefined) {
+              this.currentUser?.favs_list.splice(index, 1);
+              console.log('Product removed from favorites:', updatedUser);
+            }
+          },
+          error: (error) => {
+            console.error('Error removing product from favorites:', error);
+          }
+        });
+      } else {
+        this.userService.addToFavorites(this.currentUser.id, this.product.id).subscribe({
+          next: (updatedUser) => {
+            console.log('Product added to favorites:', updatedUser);
+            this.currentUser?.favs_list.push(this.product);
+          },
+          error: (error) => {
+            console.error('Error adding product to favorites:', error);
+          }
+        });
+      }
+    }
+  }
+
+  /**
+   * Checks if the product is in the users favorite list.
+   * @returns {boolean}
+   */
+  isProductInFavorites(): boolean {
+    if (this.currentUser && this.currentUser.favs_list.length > 0) {
+      return this.currentUser.favs_list.some(product => product.id === this.product.id);
+    }
+    return false;
+  }
+
+  /**
+   * Adds the product selected into the cart of the user logged.
+   * @returns {void}
+   */
+  addToCart(): void {
+    if (this.currentUser) {
+      this.userService.addProductToUserCart(this.currentUser.id, this.product.id).subscribe({
+        next: (updatedUser) => {
+          console.log('User updated successfully:', updatedUser);
+          this.currentUser?.bag_list.push(this.product);
+        },
+        error: (error) => {
+          console.error('Error updating user:', error);
+        }
+      });
+    }
+  }
 
   /**
    * Gets the size values of the product selected.
@@ -85,18 +173,5 @@ export class ProductDetailComponent implements OnInit {
    */
   isAccessories(): boolean {
     return this.product.categories.some(cat => cat.id === 3 && cat.name === 'Accessories');
-  }
-
-  /**
-   * Loads the info of the product selected.
-   * @returns {void}
-   */
-  ngOnInit(): void {
-    const productId = this.route.snapshot.paramMap.get('id');
-
-    this.service.getProduct(Number(productId)).subscribe((product) => {
-      this.product = product
-      this.isLoading = false
-    });
   }
 }
