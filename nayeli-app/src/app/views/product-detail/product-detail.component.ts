@@ -40,6 +40,21 @@ export class ProductDetailComponent implements OnInit {
     private userService: UserApiService
   ) { }
 
+  toggleFavorite(): void {
+
+  }
+
+  /**
+   * Checks if the product is in the users favorite list.
+   * @returns {boolean}
+   */
+  isProductInFavorites(): boolean {
+    if (this.currentUser && this.currentUser.favs_list.length > 0) {
+      return this.currentUser.favs_list.some(product => product.id === this.product.id);
+    }
+    return false;
+  }
+
   /**
    * Adds the product selected into the cart of the user logged.
    * @returns {void}
