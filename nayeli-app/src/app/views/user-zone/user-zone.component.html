@@ -41,7 +41,8 @@
                     @if (currentUser && currentUser.favs_list.length > 0) {
                     @for (product of currentUser.favs_list; track $index) {
                     <!-- Favorite Product -->
-                    <app-product-favorite [product]="product"></app-product-favorite>
+                    <app-product-favorite [product]="product" [index]="$index"
+                        (remove)="removeProductFromFavorites($event)"></app-product-favorite>
                     }
                     } @else {
                     <p class="text-gray-600 mt-4">You don't have any favorite products yet.</p>

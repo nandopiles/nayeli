@@ -54,11 +54,22 @@ export class ProductDetailComponent {
   }
 
 
+  /**
+   * Handles if the product has to be added or removed from the favorite list. (do 2 methods)
+   * @returns {void}
+   */
   toggleFavorite(): void {
     if (this.currentUser) {
       if (this.isProductInFavorites()) {
-        console.log("is in favorites");
-
+        this.userService.removeProductFromFavorites(this.currentUser.id, this.product.id).subscribe({
+          next: (updatedUser) => {
+            console.log('Product removed from favorites:', updatedUser);
+            // this.currentUser?.favs_list.splice(index, 1);
+          },
+          error: (error) => {
+            console.error('Error removing product from favorites:', error);
+          }
+        });
       } else {
         this.userService.addToFavorites(this.currentUser.id, this.product.id).subscribe({
           next: (updatedUser) => {

@@ -34,6 +34,28 @@ export class UserZoneComponent {
   }
 
   /**
+   * Removes a product from the favorite list.
+   * @param {number} index
+   * @returns {void}
+   */
+  removeProductFromFavorites(index: number): void {
+    if (this.currentUser) {
+      const productIdToRemove = this.currentUser.favs_list[index].id;
+
+      this.http.removeProductFromFavorites(this.currentUser.id, productIdToRemove).subscribe({
+        next: (updatedUser) => {
+          console.log('Product removed from favorites:', updatedUser);
+          this.currentUser?.favs_list.splice(index, 1);
+        },
+        error: (error) => {
+          console.error('Error removing product from favorites:', error);
+        }
+      });
+    }
+
+  }
+
+  /**
    * Removes a product from the cart.
    * @param {number} index
    * @returns {void}

@@ -116,9 +116,19 @@ export class UserApiService {
    * Adds the product to the favorite list of the user.
    * @param {number} userId
    * @param {number} productId
-   * @returns {void}
+   * @returns {Observable<User>}
    */
   addToFavorites(userId: number, productId: number): Observable<User> {
     return this.http.put<User>(`${this.url}/user/${userId}/add_to_favorites/${productId}`, {});
+  }
+
+  /**
+   * Removes a product from the users favorite list.
+   * @param {number} userId
+   * @param {number} productId
+   * @returns {Observable<User>}
+   */
+  removeProductFromFavorites(userId: number, productId: number): Observable<User> {
+    return this.http.put<User>(`${this.url}/user/${userId}/remove_from_favorites/${productId}`, {});
   }
 }
