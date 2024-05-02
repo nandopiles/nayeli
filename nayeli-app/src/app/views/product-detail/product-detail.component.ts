@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Product, SizeOption, User } from '../../interfaces/nayeli.interface';
@@ -13,7 +13,7 @@ import { UserApiService } from '../../services/user-api.service';
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.css'
 })
-export class ProductDetailComponent implements OnInit {
+export class ProductDetailComponent {
   product: Product = {
     id: 0,
     brand: '',
@@ -38,10 +38,39 @@ export class ProductDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private http: ProductApiService,
     private userService: UserApiService
-  ) { }
+  ) {
+    const productId = this.route.snapshot.paramMap.get('id');
+
+    this.http.getProduct(Number(productId)).subscribe((product) => {
+      this.product = product
+      this.isLoading = false
+    });
+
+    this.userService.currentUser.subscribe(user => {
+      console.log(user);
+
+      this.currentUser = user;
+    });
+  }
+
 
   toggleFavorite(): void {
+    if (this.currentUser) {
+      if (this.isProductInFavorites()) {
+        console.log("is in favorites");
 
+      } else {
+        this.userService.addToFavorites(this.currentUser.id, this.product.id).subscribe({
+          next: (updatedUser) => {
+            console.log('Product added to favorites:', updatedUser);
+            this.currentUser?.favs_list.push(this.product);
+          },
+          error: (error) => {
+            console.error('Error adding product to favorites:', error);
+          }
+        });
+      }
+    }
   }
 
   /**
@@ -64,7 +93,6 @@ export class ProductDetailComponent implements OnInit {
       this.userService.addProductToUserCart(this.currentUser.id, this.product.id).subscribe({
         next: (updatedUser) => {
           console.log('User updated successfully:', updatedUser);
-          // this.currentUser = updatedUser;
           this.currentUser?.bag_list.push(this.product);
         },
         error: (error) => {
@@ -130,24 +158,5 @@ export class ProductDetailComponent implements OnInit {
    */
   isAccessories(): boolean {
     return this.product.categories.some(cat => cat.id === 3 && cat.name === 'Accessories');
-  }
-
-  /**
-   * Loads the info of the product selected and gets the user logged.
-   * @returns {void}
-   */
-  ngOnInit(): void {
-    const productId = this.route.snapshot.paramMap.get('id');
-
-    this.http.getProduct(Number(productId)).subscribe((product) => {
-      this.product = product
-      this.isLoading = false
-    });
-
-    this.userService.currentUser.subscribe(user => {
-      console.log(user);
-
-      this.currentUser = user;
-    });
   }
 }

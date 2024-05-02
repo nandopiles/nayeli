@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Category, Product, ProductSearch } from '../../interfaces/nayeli.interface';
 import { CategoryApiService } from '../../services/category-api.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
@@ -11,7 +11,7 @@ import { ProductApiService } from '../../services/product-api.service';
   templateUrl: './action-bar.component.html',
   styleUrl: './action-bar.component.css'
 })
-export class ActionBarComponent implements OnInit {
+export class ActionBarComponent {
   categories: Category[] = [];
   filterForm = new FormGroup({
     category_id: new FormControl('all'),
@@ -23,7 +23,9 @@ export class ActionBarComponent implements OnInit {
   constructor(
     private categoryService: CategoryApiService,
     private productService: ProductApiService
-  ) { }
+  ) {
+    this.getCategories();
+  }
 
   /**
    * Gets all the categories.
@@ -51,13 +53,5 @@ export class ActionBarComponent implements OnInit {
       console.log(filteredProducts);
       this.filteredProducts.emit(filteredProducts);
     });
-  }
-
-  /**
-   * Loads all the name categories.
-   * @returns {void}
-   */
-  ngOnInit(): void {
-    this.getCategories();
   }
 }

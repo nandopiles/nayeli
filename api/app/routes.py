@@ -133,6 +133,23 @@ def remove_from_cart(user_id, product_id):
     return make_response(jsonify({"error": "Product not in user's cart"}), 400)
 
 
+@app.route("/user/<int:user_id>/add_to_favorites/<int:product_id>", methods=["PUT"])
+def add_to_favorites(user_id, product_id):
+    """Adds a product to the user's favorites list."""
+    user = User.query.get(user_id)
+    if not user:
+        return jsonify({"error": "User not found"}), 404
+
+    product = Product.query.get(product_id)
+    if not product:
+        return jsonify({"error": "Product not found"}), 404
+
+    user.favs_list.append(product)
+    db.session.commit()
+
+    return jsonify(user.serialize()), 200
+
+
 # --- Products ---
 @app.route("/products", methods=["GET"])
 def get_products():

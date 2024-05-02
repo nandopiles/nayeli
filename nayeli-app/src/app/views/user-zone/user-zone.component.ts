@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { User } from '../../interfaces/nayeli.interface';
 import { UserApiService } from '../../services/user-api.service';
 import { ProductCartComponent } from '../../components/product-cart/product-cart.component';
@@ -12,7 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './user-zone.component.html',
   styleUrl: './user-zone.component.css'
 })
-export class UserZoneComponent implements OnInit {
+export class UserZoneComponent {
   currentUser: User | null = {
     id: 0,
     email: '',
@@ -28,7 +28,10 @@ export class UserZoneComponent implements OnInit {
     private http: UserApiService,
     private router: Router,
     private route: ActivatedRoute
-  ) { }
+  ) {
+    this.http.currentUser.subscribe(user => this.currentUser = user);
+    this.calcTotal()
+  }
 
   /**
    * Removes a product from the cart.
@@ -68,14 +71,5 @@ export class UserZoneComponent implements OnInit {
   calcTotal(): void {
     this.totalPrice = this.currentUser?.bag_list.reduce((acc, product) => acc + product.price, 0) || 0;
     this.totalPrice = parseFloat(this.totalPrice.toFixed(2));
-  }
-
-  /**
-   * Gets the user logged.
-   * @returns {void}
-   */
-  ngOnInit(): void {
-    this.http.currentUser.subscribe(user => this.currentUser = user);
-    this.calcTotal()
   }
 }
