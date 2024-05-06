@@ -21,8 +21,8 @@ export class ActionBarComponent {
   @Output() filteredProducts = new EventEmitter<Product[]>();
 
   constructor(
-    private categoryService: CategoryApiService,
-    private productService: ProductApiService
+    private _categoryService: CategoryApiService,
+    private _productService: ProductApiService
   ) {
     this.getCategories();
   }
@@ -32,7 +32,7 @@ export class ActionBarComponent {
    * @returns {void}
    */
   getCategories(): void {
-    this.categoryService.getAllCategories().subscribe((categories) => {
+    this._categoryService.getAllCategories().subscribe((categories) => {
       this.categories = categories;
       console.log(this.categories);
     })
@@ -49,7 +49,7 @@ export class ActionBarComponent {
       name_contains: String(this.filterForm.value.name_contains)
     };
 
-    this.productService.searchProducts(filterParams).subscribe((filteredProducts) => {
+    this._productService.searchProducts(filterParams).subscribe((filteredProducts) => {
       console.log(filteredProducts);
       this.filteredProducts.emit(filteredProducts);
     });

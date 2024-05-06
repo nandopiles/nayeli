@@ -16,7 +16,7 @@ export class ProductsComponent {
   products: Product[] = [];
   isLoaded: boolean = false;
 
-  constructor(public service: ProductApiService) {
+  constructor(public _productService: ProductApiService) {
     this.isLoaded = false
     this.getProducts()
   }
@@ -26,7 +26,7 @@ export class ProductsComponent {
    * @returns {void}
    */
   getProducts(): void {
-    this.service.getAllProducts().subscribe((response) => {
+    this._productService.getAllProducts().subscribe((response) => {
       this.products = response;
       console.log(response);
       this.isLoaded = true;
