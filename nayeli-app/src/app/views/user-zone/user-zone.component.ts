@@ -25,11 +25,11 @@ export class UserZoneComponent {
   totalPrice: number = 0;
 
   constructor(
-    private http: UserApiService,
+    private _userService: UserApiService,
     private router: Router,
     private route: ActivatedRoute
   ) {
-    this.http.currentUser.subscribe(user => this.currentUser = user);
+    this._userService.currentUser.subscribe(user => this.currentUser = user);
     this.calcTotal()
   }
 
@@ -42,7 +42,7 @@ export class UserZoneComponent {
     if (this.currentUser) {
       const productIdToRemove = this.currentUser.favs_list[index].id;
 
-      this.http.removeProductFromFavorites(this.currentUser.id, productIdToRemove).subscribe({
+      this._userService.removeProductFromFavorites(this.currentUser.id, productIdToRemove).subscribe({
         next: (updatedUser) => {
           console.log('Product removed from favorites:', updatedUser);
           this.currentUser?.favs_list.splice(index, 1);
@@ -64,7 +64,7 @@ export class UserZoneComponent {
     if (this.currentUser) {
       const productIdToRemove = this.currentUser.bag_list[index].id;
 
-      this.http.removeProductFromUserCart(this.currentUser.id, productIdToRemove).subscribe({
+      this._userService.removeProductFromUserCart(this.currentUser.id, productIdToRemove).subscribe({
         next: (updatedUser) => {
           console.log('Product removed successfully from user cart:', updatedUser);
           this.currentUser?.bag_list.splice(index, 1);
@@ -82,7 +82,7 @@ export class UserZoneComponent {
    * @returns {void}
    */
   logOut(): void {
-    this.http.logOut();
+    this._userService.logOut();
     this.router.navigate(["/login"], { relativeTo: this.route })
   }
 

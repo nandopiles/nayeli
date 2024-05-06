@@ -36,17 +36,17 @@ export class ProductDetailComponent {
 
   constructor(
     private route: ActivatedRoute,
-    private http: ProductApiService,
-    private userService: UserApiService
+    private _productService: ProductApiService,
+    private _userService: UserApiService
   ) {
     const productId = this.route.snapshot.paramMap.get('id');
 
-    this.http.getProduct(Number(productId)).subscribe((product) => {
+    this._productService.getProduct(Number(productId)).subscribe((product) => {
       this.product = product
       this.isLoading = false
     });
 
-    this.userService.currentUser.subscribe(user => {
+    this._userService.currentUser.subscribe(user => {
       console.log(user);
 
       this.currentUser = user;
@@ -61,7 +61,7 @@ export class ProductDetailComponent {
   toggleFavorite(): void {
     if (this.currentUser) {
       if (this.isProductInFavorites()) {
-        this.userService.removeProductFromFavorites(this.currentUser.id, this.product.id).subscribe({
+        this._userService.removeProductFromFavorites(this.currentUser.id, this.product.id).subscribe({
           next: (updatedUser) => {
             const index = this.currentUser?.favs_list.findIndex(product => product.id === this.product.id);
 
@@ -75,7 +75,7 @@ export class ProductDetailComponent {
           }
         });
       } else {
-        this.userService.addToFavorites(this.currentUser.id, this.product.id).subscribe({
+        this._userService.addToFavorites(this.currentUser.id, this.product.id).subscribe({
           next: (updatedUser) => {
             console.log('Product added to favorites:', updatedUser);
             this.currentUser?.favs_list.push(this.product);
@@ -105,7 +105,7 @@ export class ProductDetailComponent {
    */
   addToCart(): void {
     if (this.currentUser) {
-      this.userService.addProductToUserCart(this.currentUser.id, this.product.id).subscribe({
+      this._userService.addProductToUserCart(this.currentUser.id, this.product.id).subscribe({
         next: (updatedUser) => {
           console.log('User updated successfully:', updatedUser);
           this.currentUser?.bag_list.push(this.product);

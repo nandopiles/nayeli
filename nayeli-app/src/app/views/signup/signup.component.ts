@@ -25,7 +25,7 @@ export class SignupComponent {
   isAlertReadyToHidden: boolean = false;
 
   constructor(
-    private http: UserApiService,
+    private _userService: UserApiService,
     private router: Router,
     private route: ActivatedRoute
   ) { }
@@ -61,7 +61,7 @@ export class SignupComponent {
       address: String(this.userInfo.value.address)
     }
 
-    this.http.addUser(newUser).subscribe({
+    this._userService.addUser(newUser).subscribe({
       next: (user => {
         console.log("User added", user);
         this.handlerSuccessAndRedirect("/login");

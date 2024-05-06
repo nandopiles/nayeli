@@ -32,7 +32,7 @@ export class LoginComponent {
   isAlertReadyToHidden: boolean = false;
 
   constructor(
-    private http: UserApiService,
+    private _userService: UserApiService,
     private router: Router,
     private route: ActivatedRoute
   ) { }
@@ -53,7 +53,7 @@ export class LoginComponent {
    * @returns {void}
    */
   handlerSuccessAndRedirect(userFound: User, redirectUrl: string): void {
-    this.http.setUser(userFound);
+    this._userService.setUser(userFound);
     this.router.navigate([redirectUrl], { relativeTo: this.route })
   }
 
@@ -62,7 +62,7 @@ export class LoginComponent {
    * @returns {void}
    */
   loginUser(): void {
-    this.http.getUser(
+    this._userService.getUser(
       String(this.userInfo.value.email),
       String(this.userInfo.value.password)
     ).pipe(

@@ -23,8 +23,8 @@ export class HomeComponent {
   };
   isMenuOpen: boolean = true;
 
-  constructor(private http: UserApiService) {
-    this.http.currentUser.subscribe(user => {
+  constructor(private _userService: UserApiService) {
+    this._userService.currentUser.subscribe(user => {
       console.log(user);
 
       this.currentUser = user;
