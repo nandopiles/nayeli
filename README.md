@@ -36,6 +36,9 @@ _Caption: Product Details Page_
 ![Screenshot 4](screenshots/contact.png)
 _Caption: Form Contact Page_
 
+![Screenshot 5](screenshots/user_zone.png)
+_Caption: User Zone Page_
+
 ## Getting Started
 
 To get started with Nayeli, follow these steps:
